@@ -15,6 +15,11 @@
 - PowerBI Mobile App
   - We can install it on our phone in order to interact with your project.
 
+**PowerBI Roadmap** : 
+
+<img width="300" height="250" alt="image" src="https://github.com/user-attachments/assets/e8281b21-34ec-4fe8-8595-4087f2fe6410" />
+
+
 </details>
 
 > Let's experience the whole ecosystem of the PowerBI end to end (not in details)
@@ -27,7 +32,7 @@ We have 3 main tools in PowerBI.
 <img width="350" height="250" alt="image" src="https://github.com/user-attachments/assets/d896fe71-d9ad-4a81-8bec-9c4a6d9cd203" />
 
 
-**PowerBI Roadmap** : 
+
 
 
 Let's explore the PowerBI Desktop :
@@ -590,14 +595,120 @@ Now you can see 100 orders (aggregated data) in our business
 <img width="350" height="250" alt="image" src="https://github.com/user-attachments/assets/da555e93-3e0f-4713-9232-fc582ee438f3" />
 
 
-If we want same thing again so we can also copy and paste it instead of again creatinng it and change the fields out there.
-Like suppose we want to see all customers aggregated here in a cart.
+If we want same thing again so we can also copy and paste it instead of again creating it and change the fields out there. <br/>
+Like suppose we want to see all customers aggregated here in a cart like count distinct customers in orders. <br/>
+So we have 12 customers who have made orders. usually we put single value information like Carts generally we put on top of the dashboard.
+
+<img width="350" height="250" alt="image" src="https://github.com/user-attachments/assets/ab91112a-d305-45ff-872c-a59b88ca8325" />
+
+Similar thing we can do for total_sales, copy the card and just change the column sales by dragging and dropping and instead of counting customers
+just sum of the sales.
+
+<img width="350" height="250" alt="image" src="https://github.com/user-attachments/assets/adcd896f-896d-4925-ae76-dd820acf5662" />
+
+We can keep adding stuffs.
+
+Let's add one more a **Line Chart**. <br/>
+Suppose we want to see numbers of orders over time. <br/>
+In Line chart we can add a lot of things. There are many fields to add here like `X-axiz`, `Y-axis`, `Secondary Y-axis` `legends`, 
+`small multiples`, `Tooltips` etc etc.
+
+Here we want to see how the sales is developing over the time and for that we usually need a date. So we have order_date so let's drag and 
+drop it to X-axis(dimension), we don't see anything yet bcuz we also need measure and we want to see total sales over the time. <br/>
+So let's drag and drop sales to Y-axis. Now we can see the granularity is acutally year but we would like to change it like drill down to more
+details by downward arrow `Expand to next level`. <br/>
+Now it looks better. we have total sales by the quarter.
+
+<img width="350" height="250" alt="image" src="https://github.com/user-attachments/assets/9fcd13a1-64be-4512-b243-7f9ae5f3d272" />
+<br/>
+<img width="350" height="250" alt="image" src="https://github.com/user-attachments/assets/61d9c786-71a9-449f-85e1-179983383f5a" />
+<br/>
+<img width="350" height="250" alt="image" src="https://github.com/user-attachments/assets/9696bf8f-0b66-4a6a-b17d-92ab6fe06e3d" />
+
+
+Now we can manage and adjust all the visuals in canvas.
+
+We can build a **Slicer**. <br/>
+This is like a filter that happens on the all visuals in the canvas. <br/>
+Here, we can add a column in order to filter your data. <br/>
+e.g. : If we would like to filter the data by country, so we can so we can here 4 countries. <br/>
+Now if we click on Germany, we will see all the visuals data is filter for the country Germany.
+
+
+<img width="350" height="250" alt="image" src="https://github.com/user-attachments/assets/f5100fe3-a994-44ae-81e9-45db91d1f218" />
+<br/>
+<img width="350" height="250" alt="image" src="https://github.com/user-attachments/assets/108e60ca-7f3f-4c7e-a6d7-6e515782041b" />
+<br/>
+<img width="350" height="250" alt="image" src="https://github.com/user-attachments/assets/84d41da6-bd5f-405a-8bc3-108f7bdd2404" />
+
+
+This is a nice way to filter and present the data in reports or dashboard. <br/>
+Similar the previous slicer we can also make another slicer just copy paste and change the filter to category and filter the data based on
+category for all visuals in canvas.
+
+<img width="350" height="250" alt="image" src="https://github.com/user-attachments/assets/35b4a50a-d089-4f54-b1a5-703d526dffae" />
+
+Now add one more last slicer i.e on date. So copy and paste change the field by order_date.
+
+So we have a list of all dates available in the dataset. But usually we don't do that bcuz it is annoying so we use ranges. How? <br/>
+Make sure click on the slicer then go to the `Format` > `slicer setting` > `Option` > `vertical list` > `between`.
+
+Now we can see our slicer looks way better where we can specify the starts and end dates.
+
+<img width="350" height="250" alt="image" src="https://github.com/user-attachments/assets/7109b222-0fc4-4db6-9a42-87123387a755" />
+<br/>
+<img width="350" height="250" alt="image" src="https://github.com/user-attachments/assets/a4cc06b0-df29-4a1b-ab33-e4c560fa1708" />
+<br/>
+<img width="350" height="250" alt="image" src="https://github.com/user-attachments/assets/e5076891-ea0b-499e-a1fe-ee74511f5106" />
+<br/>
+<img width="350" height="250" alt="image" src="https://github.com/user-attachments/assets/21094cf8-91f3-4737-8037-408bca227d64" />
+
+
+Like above, of course we can add a lot of enhancements for this report But what is missing here one important thing for this report is **Title**
+<br/>
+We can do that by inserting a textbox. <br/>
+change the color, fonts, size etc etc. <br/>
+Things get little bit chaotic so organize it by adjusting the title textbox, aggregated cards, filter slicers, Line charts, bar charts, pie charts
+etc etc.
+
+<img width="350" height="250" alt="image" src="https://github.com/user-attachments/assets/64ff62a7-e46a-4318-bf72-6bed2142c4e3" />
+<br/>
+<img width="350" height="250" alt="image" src="https://github.com/user-attachments/assets/0ec94197-97b7-47ca-bc2a-0318f41664b1" />
+
+At the end we can rename the things like title textbox, aggregated cards, filter slicers, Line charts, bar charts, pie charts etc. <br/>
+count to order_id = Total Number of Orders, by clicking on it and in the field section rename it. <br/>
+Same things gooes for count of distinct customer id as number of unique customers.
+
+
+With that we can say we have a functioning Report which has big numbers of the business, how the number of sales is developing over the time.
+Top products of the business, which category is perfoming very well, also we can slice and filter the data based on the way we need like country
+wise, category wise and date between(start, end). This is the power of PowerBI by just Drag and drop we build an amazing dashboard which is very easy!
+
+Once you're done! DON'T FORGET TO SAVE THE WORK!!
+
+With thar we have gone through most important critical sections in the interface of the PowerBI Desktop and also built the dashboard over here.
+
+<img width="500" height="350" alt="image" src="https://github.com/user-attachments/assets/a759bcee-95c9-4cff-8be3-af448a3fc349" />
+
+Now based on data create your own new dashboard.<br/>
+Go and create a new page and start clicking around. <br/>
+Start creating connecting and manipulating the data. <br/>
+Start creating new visuals.
+
+Nothing can goes wrong, you can always start from the scratch. You can always save a second copy as a backup.<br/>
+It is time to break things, make mistakes and explore more details in the interface.
 
 </details>
 
+Congratulations!! For building your first PowerBI Dashboard.
 
 </details>
 <!-------------- Step#1 PowerBI Desktop ------------------->
+
+Once we build the things, we want to share it. <br/>
+
+<img width="350" height="250" alt="image" src="https://github.com/user-attachments/assets/333262ec-392d-459d-9fcf-af51f564e15d" />
+
 
 # Step#2 PowerBI Services
 
@@ -605,6 +716,146 @@ Like suppose we want to see all customers aggregated here in a cart.
   <summary> PowerBI <b> Services </b> </summary>
 
 <br/>
+
+**Once we build the things, we want to share it.** <br/>
+Here, we have two options : <br/>
+- Either we share the `.pbix` file to others which is great thing if you're building your portfolio and you want to 
+upload it to your github account. <br/>
+
+- Or But in company we don't share files of PowerBI. Bcuz this is really bad practices, instead we publish our dashboards into **PowerBI Service**
+
+<img width="350" height="250" alt="image" src="https://github.com/user-attachments/assets/cc733bdb-9ee4-42d2-bf60-862b8bb9c15a" />
+
+### PowerBI Services
+
+**What is PowerBI Service?**
+- PowerBI Service is a **cloud Platform** managed by Microsoft.
+- This is where you publish your reports to live there.
+- You're going to share them over a cloud location, from there you and your users are going to access those published reports from now on 27x7
+directly from the browser.
+
+For Service, there are like different pricing tiers.
+
+Compare business intelliegence plans and pricing
+| Free account    | PowerBI Pro  | PowerBI Premium per user     | PowerBI Embeded |
+|-----------------|--------------|------------------------------|-----------------|
+|   Free          |  $ 14.00     |    $ 24.00                   | Variable        |
+| Limited feaures | More feaures | More Advanced addon features | Directly put on your website |
+
+### Let's explore the PowerBI Service for free
+
+1. Create free account <br/>
+-Google Search "PowerBI Service" [Power BI App](https://app.powerbi.com) <br/>
+-PowerBI only accepts organization email. So your private email will not work. <br/>
+-There are workaround for that many options are there like creating a business account for google  or go to microsoft dynamics 365 and make sure you're selecting it from microsoft account, you can create a free business account but only for 30 days. <br/>
+-Try for free > Dynamic 365 Sales Try for free > gives you option to setup a new account > add here your private email > setup an account > add your details > Next > Domain name "xyz"+".onmicrosoft.com", name and password > It will create your business account. <br/>
+-After that payment method but we actually don't have to so it if you just try for 30 days bcuz at this point microsoft already created your account so go back to powerBI Service. <br/>
+-Now open PowerBIApp.com and setup your account with newly created microsoft business account. It will accept it now > Get started!!
+
+2. Now finally we're inside PowerBI Service <br/>
+-this is currently totally free. There is no trial for 1 month. So you don't have to pay anything of course you have multiple tiers for more features but for training and practice we can stay with free version. <br/>
+-But the business account we created is only for 30 days. But if you want to have your business email for longer than you have to pay microsoft around $5.
+-Now in our browser, we are inside the PowerBI Service. Here, we don't have to install anything locally at our PC bcuz whole thing is in the cloud.
+<br/>
+-There are a lot of features and stuffs we didn't cover yet.
+
+<br/>
+<img width="350" height="250" alt="image" src="https://github.com/user-attachments/assets/6eedb0a8-c394-401d-8c0c-6c8fc83e0f7d" />
+<br/>
+<img width="350" height="250" alt="image" src="https://github.com/user-attachments/assets/e3299415-e7a8-40ec-a95b-50e260a43a0d" />
+<br/>
+<img width="350" height="250" alt="image" src="https://github.com/user-attachments/assets/12c639df-1592-4610-a22f-340bf04b6c3b" />
+<br/>
+<img width="350" height="250" alt="image" src="https://github.com/user-attachments/assets/36e2a198-3437-427b-8ff4-e22b7cc4e5d1" />
+<br/>
+<img width="350" height="250" alt="image" src="https://github.com/user-attachments/assets/93a5e592-4ed6-4345-8f10-51788da0f77c" />
+<br/>
+<img width="350" height="250" alt="image" src="https://github.com/user-attachments/assets/625921f4-4c6e-497b-b291-1505b527b023" />
+<br/>
+
+There are a lot of icons in the left side. <br/>
+Let's focus on the the WorkSpace. It is like a shared folder in the cloud where we can store our PowerBI Projects like the reports and dashboards the things which we are building <br/>
+Instead of having it PowerBI files in the local PC, we can now share it in our workspace. <br/>
+If you click on `My Workspace`. It is currently empty bcuz we haven't publish anything. <br/>
+
+<img width="350" height="250" alt="image" src="https://github.com/user-attachments/assets/5edfed02-e934-46b8-95bc-27e9eb2264ae" />
+<br/>
+<img width="350" height="250" alt="image" src="https://github.com/user-attachments/assets/f4aea6bb-d2e7-4457-9122-bed3b010892c" />
+<br/>
+<img width="350" height="250" alt="image" src="https://github.com/user-attachments/assets/17d0965b-0ea5-4ff6-b98d-70b587efc0b5" />
+<br/>
+
+3. Publish what we have built <br/>
+We can now publish everything that we have build locally on our PC with PowerBI Desktop into the PowerBI Service. <br/>
+How ? <br/>
+Let's get back to our PowerBI Desktop App. <br/>
+Sign In with your business account. You will see login icon that you're logged in<br/>
+Now next step is important one, so make sure you're in `Home` ribbon > `Publish` icon on top right corner > click on `Publish` > now PowerBI Shows you your workspace that we just saw in PowerBI Service cloud. so click on `My workspace` > `Select` > Now PowerBI is going to publish whole file the the PowerBI Desktop to the PowerBI Service. > It will take few seconds to done `Got it` <br/>
+
+<img width="350" height="250" alt="image" src="https://github.com/user-attachments/assets/67a9c18c-0962-411a-b393-ac6f58a2bbb5" />
+<br/>
+<img width="350" height="250" alt="image" src="https://github.com/user-attachments/assets/e4e39cba-bc4b-4c31-b66c-e47498975929" />
+<br/>
+<img width="350" height="250" alt="image" src="https://github.com/user-attachments/assets/4f88b25a-2dd2-478b-8c83-07a05bec0b65" />
+<br/>
+<img width="350" height="250" alt="image" src="https://github.com/user-attachments/assets/c5bb9247-b101-4557-8776-49eefc0816e1" />
+
+
+
+4. Check what you published <br/>
+Now if you go back to the PowerBI Service, you will see 2 things (if not refresh your page)
+- Reports
+- Semantic Model
+
+Let's click on the 1st one, MyFirstDashboard, click on it, we're going to see exactly what we have build in PowerBI Desktop App locally. But this time browser not anymore in Desktop.
+
+This is exactly how you and your end users will be interacting with your reports and dashboard. They will not open the PowerBI Desktop at their PC. They simply go to browsers and start interacting with your work on the cloud location. It is awesome.
+
+<img width="350" height="250" alt="image" src="https://github.com/user-attachments/assets/ec8fa6cd-a9aa-4d2c-901f-60bd8b1578e0" />
+<br/>
+<img width="350" height="250" alt="image" src="https://github.com/user-attachments/assets/fabab099-0855-45b3-873f-061ca0d23ecb" />
+<br/>
+<img width="350" height="250" alt="image" src="https://github.com/user-attachments/assets/83584f8d-fffd-488b-bcfd-0e8993bf641f" />
+
+
+
+If you go  back to your workspace bottom left corner, `My workspace` > we have another thing not only Report we can also find sematic Model.
+If yoy publish a PowerBI Report, you're publishing 2 things
+- Publishing Reports the visual we can see
+- Also publishing the data behind the reports
+So everything that we have built and prepared are published in PowerBI Service.
+
+There are a lot things we can see in the interface of PowerBI Service like Go and `Explore` the content of this semantic Model like Explore this data. In the right side you will find two tables customers and orders. Here PowerBI also allows you to add more calculations and also the list of reports that are using your sematic model.
+As of now we have only one report so we can see only one report on our sematic model but as we keep using our data (data Model). you will find list of all.
+
+<img width="350" height="250" alt="image" src="https://github.com/user-attachments/assets/aa20feaa-d5db-4923-8e09-7239d9316ab0" />
+<br/>
+<img width="350" height="250" alt="image" src="https://github.com/user-attachments/assets/69035dc6-7ba6-409b-9801-daecc0380e22" />
+
+
+
+If you go to the `Lineage` section, > Open workspace lineage. You can see a full lineage how everything is built like those 2 files (csv) connected to sematic model and from semantic model we have created one report. This is amazing if you have a lot of reports and models this gives you clean picture how things are connected.
+
+<img width="350" height="250" alt="image" src="https://github.com/user-attachments/assets/f631c323-6408-486d-bfd3-b8ded96cedd5" />
+<br/>
+<img width="350" height="250" alt="image" src="https://github.com/user-attachments/assets/910a2cc9-77c8-43cb-9b0a-fcd970cf5106" />
+
+
+As you keep growing and building projects, you keep adding stuffs inside your workspace.
+
+Now let's go back to the `My Workspace` and now you want to share those stuffs with the other users. <br/>
+Here comes Pay Wall where you can go to the next tier(upgrade to paid) in order to collaborate with others in this workspace.
+We don't have to need as of now the setup we have is more than enough to practice and learn PowerBI.
+
+<img width="350" height="250" alt="image" src="https://github.com/user-attachments/assets/e81e9857-3ef7-4192-a2b1-eb7f6d8aeb3f" />
+<br/>
+<img width="350" height="250" alt="image" src="https://github.com/user-attachments/assets/265fe49f-3475-4b03-ad8c-7334f7977bb5" />
+
+With that we have covered major part of the PowerBI Service like created the temporary business email to setup our PowerBI Service. we set up our PowerBI Service Free account and we have pulish our first dashboard from PowerBI Desktop locally to PowerBI Serice on cloud.
+
+From their we use browser in order to interact with it. We also explore the Interface of the PowerBI Service where we have the Workspaces, sematic model, lineage etc.
+
+Next we will see the last and least important tool in PowerBI ecosystem i.e PowerBI Mobile App
 
 </details>
 
@@ -618,6 +869,29 @@ Like suppose we want to see all customers aggregated here in a cart.
 
 <br/>
 
+If you go to App Store and search for PowerBI, you will find app called "Microsoft PowerBI".
+
+Let's Download and install it. <br/>
+Once it's done open it and login with your business email.
+
+Again we can see the same thing in the service where we can the M Workspace and My FirstDashboard. <br/>
+This exactly same thing.
+
+So now we can see our dashboard using Mobile Phone / Tablet.
+
+We can interact with the data exactly like the web browser on the same cloud service not extra storage.
+
+So once we place or publish our work from PowerBI Desktop locally to PowerBI Service on cloud, we can interact it either through the Browser or Mobile phone.
+
+Benefits of PowerBI Mobile App
+
+- Use to check the health of the System in order to understand whether all the data loaded correctly from the sources into mu systems.
+So as data engineer we use PowerBI Mobile App.
+
 </details>
 
 <!--------------  Step#3 PowerBI Mobile App ------------------->
+
+**Summary** <br/>
+We started by **Installing the PowerBI Desktop**, We connected the data, data cleanup and preparation using Power Query transformed it, model it usinf DAX and then built our first dashboard in PowerBI Desktop and after that we saw the **PowerBI Service** where we publish our dashboard from the desktop to the could service and we start intercting with our dashboard using our browser and at the end we used the **PowerBI Mobile App** to interact with the same dashboard.
+
