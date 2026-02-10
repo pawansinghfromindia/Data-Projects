@@ -208,6 +208,9 @@ e.g. : AI Data Projects, Dashboard and standard Reports Projects etc
 Companies have different Departments, Based on that Projects and based on that teams. <br/>
 So, If you start building a project, first you have to decide **tools** based on the requirements of the project 
 
+<img width="350" height="250" alt="image" src="https://github.com/user-attachments/assets/5545f666-2a18-449b-bd6b-83539b158534" />
+
+
 `For Storage : Database`
 - Project 1, team decides to use **Oracle** database
 - Project 2, Another team decides that let's use **PostgreSQL**
@@ -246,6 +249,13 @@ So Data Engineers build this Unity Catalogs and now Data Analysts, Business User
 
 Anything about the data, It is going to be on top of these 2 layers Data Layer(Delta Lake) and Unity Catalog
 
+<img width="350" height="250" alt="image" src="https://github.com/user-attachments/assets/e2def11c-f4c8-4d5c-a048-83d3f298fc05" />
+
+
+If you're not a good Data Engineers then still you can make weird thing inside Data layer or policies stuffs. So It's not always about the tools, It slso about the Mindset.
+
+<img width="500" height="350" alt="image" src="https://github.com/user-attachments/assets/444eb201-7fd1-4399-ad15-c56117310c6d" />
+
 
 #
 </details>
@@ -254,7 +264,7 @@ Anything about the data, It is going to be on top of these 2 layers Data Layer(D
   <summary> <b> What Databricks Is (High-Level) </b>  </summary>
 
 
-<img width="350" height="218" alt="image" src="https://github.com/user-attachments/assets/5fd3a980-f40c-4f4b-8fc4-a02bac6eb8a0" />
+<img width="350" height="250" alt="image" src="https://github.com/user-attachments/assets/5fd3a980-f40c-4f4b-8fc4-a02bac6eb8a0" />
 
 Databricks is a **unified analytics platform** used to build, run, and maintain data, analytics, and AI solutions at scale.
 
@@ -301,15 +311,101 @@ This means teams can focus on working with data instead of managing systems.
   <summary> Expand </summary>
 
 <details>
-  <summary> The real story in companies </summary>
+  <summary> <b> The real story in companies </b> </summary>
 
 <br/>
 
 > **"Databricks is not used by one team. It is used by many teams, in a specific order."**
 
 
+<details>
+  <summary> <b> Data Sources </b> </summary>
+
+We uses different data sources tools as Data Sources but now a lot sources are providing data in Kafka bcuz this makes life easier for everyone for that they produces and for us as a consumer. Some companies are pushing to using **Kafka**.
+
+So, ***Kafka*** is one important tool that we have to learn as data engineer.
+
+Also your data could be on File Servers like ***FTP*** or ***SFTP***
+
+It could be on ***Internet Server*** (https://) or may be you could get id from ***API*** (DD-API)
+
+<img width="253" height="502" alt="image" src="https://github.com/user-attachments/assets/bace5fb6-5c48-431b-9fdb-726e5160c009" />
+
+
+</details>
+
+<details>
+  <summary> Consumers/Use cases</summary>
+
+We as Data Engineers gets empty Databricks and we need to build a data product.
+
+Databricks gives us a reference on how to build a system something called ***Data Lakehouse***
+
+So as a data engineers we're going to make 3 Layers : `Bronze`, `Silver` and `Gold` It is called as ***Madellian Architecture***
+
+Why we have 3 layers, It's bcuz It is seperation of concerns, It is easier for us to manage 3 different purpose than putting everything in one place.
+
+We will build ***Pipeline*** to load the data in those layers.
+
+Of course, we(Policies Experts) will be configuring the ***Unity Catalogs***
+
+And also we're going to build ***Data Lakehouse***
+
+
+<img width="350" height="250" alt="image" src="https://github.com/user-attachments/assets/218829f4-ed9c-4708-acd3-ed206343a2eb" />
+
+
+This is what our job is and this is what we do as a Data Engineers. <br/>
+This is not easy, it's very hard to do bcuz it involves a lot of **data processing**, **data transformation**, **understanding of how to module data** and stuffs
+like that. This is the world of a data engineer. <br/>
+We can do the whole thing ***Pipelining, automations, definition of Policies*** everything in just only one tool i.e. ***databricks***. You don't need storage, you don't need
+get databases like Oracle etc etc. <br/>
+
+Before Databricks, we had to use 6-7 tools in order to do all those stuffs but with databricks we can do everything in one place.
+
+Everything ends for us as Data Engineers as we build the final layer i.e `Gold Layer`. So basically `Gold Layer` is final product. We have data ready, everything is
+prepared and now we something called a **Data Product**. Now everyone can use it for Analytics etc.
+
+Now comes ***Use Cases***, Here a lot people are interested in your data, you're going to have ***Standard Users***, ***Data Analysts***, ***Data Scientists***, 
+***PowerBI Users***. <br/>
+They have a lot of options on how to do this.
+
+One easy and standard way is just use a new tool(not databricks tool) build a standard report using ***PowerBI***. So start consuming the data from gold layer and 
+start building a standard dashboard and offer it our users.
+
+Now those **Standard users** consume the PowerBI reports just by clicking.
+
+<img width="500" height="350" alt="image" src="https://github.com/user-attachments/assets/118a2171-a355-45c1-a5ea-daedea98e978" />
+
+Of course, this is not the only thing we can do with data. <br/>
+As a Data Analyst, we have to do ***Data Exploration***, of course we can do that using PowerBI but generally data exploration you do for yourself to understand the
+context, what is inside the Data Lakehouse bcuz you can't directly build dashboard without understanding the content. So as a Data Analyst last thing we do is building dashboard and reports using PowerBI before that we have to do a lot of explorations and investigations and we do this using databricks.
+
+There are many options like we can do using either ***Databricks Notebooks*** in case if we want to work using `SQL` or `Python` or
+you can just use `SQL` using ***SQL Editor*** as well.
+
+Sometimes the standard users don't really want the PowerBI, They want to see and play around the data in data lakehouse. So some of those Standard Users is going to be ***Power Users*** (users that has SQL Skills) they want to explore the data bcuz reports are not making enough sense to them.
+
+So even the Business Users those who have SQL skills, they can start exploring the big data in Data Lakehouse. 
+
+We can also build the ***dashboard in Databricks*** but it is different than the PowerBI dashboard. It is not the final product of your dashboard it for us if everything make sense and everyone is agree here in databricks dashboard then only build the PowerBI Dashboard.
+
+***Data Scientists*** can do ***Machine Learning*** by using the same final data by feeding this to their models.
+
+Now since AI diiferent Code Models came into market, now even Standard Business users can interact with data lakehouse like the Gold Layer final data not using `SQL`  not using `PowerBI Dashboard` but using the LLM (ChatGPT) by prompting not works in all use cases still in progress.
+
+</details>
+
 <img width="500" height="350" alt="image" src="https://github.com/user-attachments/assets/8e281b17-492c-4123-861d-a04408e78fc3" />
 
+If we look at Databricks as a big picture, This is something like we didn't dream of bcuz working on big data projects like this in databricks is only for experts.
+It requires heavy scripting, know how to configure clusters and stuffs. So even Data Analyst can't interact with all components of databricks. Maximum what Data Engineers can do to Data Analyst is provide you an extra database in order to work with PowerBI.
+
+So whole Data Lakehouse is only for Data Engineers. Noone can access these. They build it different products and share it using SQL and databases.
+
+But now we don't do it anymore bcuz we offers the data for multiple usecases and now everyone is able to interact with such a platform where you have multi proessing and scalable systems.
+
+That's why Database is used very widely and getting a lot of attention.
 
 #
 </details>
@@ -511,6 +607,49 @@ Raw data → Lakehouse tables → Curated data products → Governed access → 
   <summary> Expand </summary>
 
 The goal is not to memorize menu, but to know where things live and when to use them.
+
+As a Data Analyst, SQL section is important for you. There is no way around it, you can use all these stuffs.
+
+<img width="262" height="337" alt="image" src="https://github.com/user-attachments/assets/0700a1e4-da3f-4bdb-8d41-d70f2c7370fb" />
+
+In new section most important thing is **Catalog and Compute**
+
+<img width="220" height="343" alt="image" src="https://github.com/user-attachments/assets/b472f095-2e6a-4bf0-bba4-f0ecc427fbd6" />
+
+We have always ask ouself where is the data in each platform? <br/>
+So in databricks the data is present in something they call ***Unity Catalog or Catalog***. <br/>
+They present the data in a way it looks like database. It looks like a database but it's not the real database. There is no DBMS is running over here.
+
+<img width="600" height="437" alt="image" src="https://github.com/user-attachments/assets/94c6da65-51d3-4abd-b951-c33365111adf" />
+
+**Compute** : In the free edition you will have only one compute/server/machine for you to use. Bcuz it cost, It is virtual machine of Microsoft or AWS or GCP.
+
+<img width="600" height="442" alt="image" src="https://github.com/user-attachments/assets/b6a27f24-94a1-4e58-98ce-958b0df9676c" />
+
+> So, You always need a storage/Database/DataLake and Compute/Machine/Server
+
+In databases, data always stored in files. And in SQL Server, PostgresSQL, Oracle etc the files of databases are not for us, we're not the person who go and start working with database files. That file is closed file locked file and only SQL Engine/Oracle Engine can interact with those files.
+
+But in databricks, Data Lakes, files are like open format called ***parquet***. So the open format file where everyone is welcome to use the data
+
+<img width="350" height="250" alt="image" src="https://github.com/user-attachments/assets/fd0e5b20-a1ff-43eb-9fc7-17a8073d9d4c" />
+
+
+In the background everything is stored inside a **Blob Storage** in the cloud. This is the bigger term used in cloud. 
+It like a container of files. So we can put inside anything like a csv file, an image, and the standard way on using files in databricks called **delta files** or **delta tables**. They are bracket files but with some extra logs and transactions which have some add on benefits. But it is an open file, you can use it for any purpose. So you can use it in databricks outside databricks.
+
+<img width="350" height="245" alt="image" src="https://github.com/user-attachments/assets/ef3ac0a7-f151-4733-ada6-00d2dff91314" />
+
+Earliers as Data Analyst/Engineers we had to learn how to work with Delta files like read files, earlier you can immediately jump to SQL and you had to read this file through python by loading this. Which is still very hard for few people like only expert can do this.
+
+Let's make something that everyone knows. Something looks like Database. So they build something Unity Catalog on top of it(delta files) i.e. MetaStore <br/>
+that makes it look like database for you and database everyone can use it.
+
+As we know in DBMS system we always have hierarchy on how we oraganize and find our data. So in databricks It starts with `metastore` this is the highest node and then we can build different catalogs in databricks like one catalog for development another catalog for production may be for HR another catalog so for each project each big thing we can create a new `catalog` and depends on each project we create `schemas` like bronze, silver, gold. So far everything is logical, oraganized data
+
+
+<img width="700" height="250" alt="image" src="https://github.com/user-attachments/assets/2a1bf29a-8e9f-46f4-a617-00e8c1523e26" />
+
 
 <details>
   <summary> <b> Databricks Workspace UI </b>Interfaces </summary>
