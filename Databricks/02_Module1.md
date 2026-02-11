@@ -609,10 +609,18 @@ Raw data → Lakehouse tables → Curated data products → Governed access → 
 The goal is not to memorize menu, but to know where things live and when to use them.
 
 As a Data Analyst, SQL section is important for you. There is no way around it, you can use all these stuffs.
+<details>
+  <summary> <b> SQL section </b> </summary>
 
 <img width="262" height="337" alt="image" src="https://github.com/user-attachments/assets/0700a1e4-da3f-4bdb-8d41-d70f2c7370fb" />
 
+</details>
+
 In new section most important thing is **Catalog and Compute**
+
+Let's see what is Unity Catalog?
+<details>
+  <summary> <b> Unity Catalog/Catalog <code> Metastore > catalog >  schema > Tables | Views | Volume | Functions </code> </b> </summary>
 
 <img width="220" height="343" alt="image" src="https://github.com/user-attachments/assets/b472f095-2e6a-4bf0-bba4-f0ecc427fbd6" />
 
@@ -645,14 +653,156 @@ Earliers as Data Analyst/Engineers we had to learn how to work with Delta files 
 Let's make something that everyone knows. Something looks like Database. So they build something Unity Catalog on top of it(delta files) i.e. MetaStore <br/>
 that makes it look like database for you and database everyone can use it.
 
-As we know in DBMS system we always have hierarchy on how we oraganize and find our data. So in databricks It starts with `metastore` this is the highest node and then we can build different catalogs in databricks like one catalog for development another catalog for production may be for HR another catalog so for each project each big thing we can create a new `catalog` and depends on each project we create `schemas` like bronze, silver, gold. So far everything is logical, oraganized data
+> **`Metastore`** > **`catalog`** > **`schema`** > `Tables` | `Views` | `Volume` | `Functions` |
+
+As we know in DBMS system we always have hierarchy on how we oraganize and find our data. So in databricks It starts with `metastore` this is the highest node and then we can build different catalogs in databricks like one catalog for development another catalog for production may be for HR another catalog so for each project each big thing we can create a new `catalog` and depends on each project we create `schemas` like bronze, silver, gold. So far everything is logical, oraganized data.
+You don't see data inside `catalog` or `schema` It's just how you organize the company data.
+
+Inside the `schema` things get interesting, you cab build a table(rows, columns) and you can also `view` on top of it. <br/>
+You can also build something called `volume`.
+> **`Volume` is just like a folder that looks like `blob storage` where you can put data that is not ready to have the `table` shape**.
+> - Not all data is in `Table` form (columns and rows). So we can have `JSON` file, `image` file, `video` file whatever
+> - So can't always have Structured data like table and view so that't why we have Volume
+> So `Volume` is a folder/container for those kinds og stuffs.
 
 
-<img width="700" height="250" alt="image" src="https://github.com/user-attachments/assets/2a1bf29a-8e9f-46f4-a617-00e8c1523e26" />
+> **`Functions`** : We also have something called `functions` which is an advanced thing. In case you want to build some automatic functions for data filtering, or function for security stuffs and stuffs like that then we build functions
+
+<img width="500" height="350" alt="image" src="https://github.com/user-attachments/assets/c994df34-e759-4566-99c9-d0b53473e97a" />
+
+
+
+This was the main idea behind the ***Unity Catalog/Catalog***. It is just a way on how to organize the data and to hide the complexity behind the databricks
+
+As a Data Analyst, you don't have to know all these stuffs but as a Data Engineer you must have to know how to process delta file, how to load delta files.
+
+</details>
+
+Inside the catalog, we have `My organization` > `workspace` | `system`
+
+<details>
+  <summary> <code> My oragnization > Workspace > schemas > tables| views | volumes| functions </code> </summary>
+
+So, `My oragnization` means this is my big company over here. <br/>
+
+Below it we have `workspace` for each project so for project1 we have one workspace1, for project2 we can have workspace2 and so on.
+
+Inside `workspace`, we will have `schemas`, so here we put silver, bronze and gold and stuffs like that.
+
+Inside it we have `tables`, `views`, `volumes` or `functions`
+
+> Inside the `workspace`, There is a `default schema` so if you don't create your schema your data will go into this default schema.  
+
+<img width="350" height="250" alt="image" src="https://github.com/user-attachments/assets/408a7d7b-9999-4e08-85c3-04d08327c5d8" />
+
+
+</details>
+
+Now Compute, There is two things about Compute in databricks : 1. Clusters and 2. SQL Warehouse
+
+<details>
+  <summary> Compute  : <code>Cluster | SQL Warehouse</code> </summary>
+
+<br/>
+
+About the compute it is very complex story. But It's way better than before.
+
+Databricks Computes splits into 2 sections :
+1. Clusters
+2. SQL Warehouse.
+
+**Cluster**
+- As a Data Engineer we have to understand everything behind cluster.
+- Cluster is meant to be for Data Engineers. A cluster is something that as a data engineer we build in order to configure how to process data.
+- Usually we do everything using `PySpark` and `Python`.
+- We have a lot of details to prepare like some installation and some libraries.
+
+So, Clusters are something advanced in order to do ***Data Engineering*** or ***Data Science***.
+So for Data Engineers/Scientists, they must have to know clusters.
+
+**SQL Warehouse**
+- For Data Analyst, you will be using SQL Warehouse.
+- It is something like Cluster only but It is made reallt easy that you can configure it very simple easily.
+- You just have to say like the way you select your T-shirt size XS, S, M, L, XL. Similar to this just define the size of your SQL Warehouse and start using it.
+
+SQL Warehouse is totally optimized and prepare for Data Analyst by reducing whole complexity  of the whole thing under the hood it. 
+
+So, As Data Analyst you don't have to understand anything behind the scene. You just define the size of your SQL Warehouse and start using it.
+
+> In the free edition we allowed to use only SQL Warehouse.
+
+There are 2 types inside each 2 of these.
+```md
+Databricks Compute
+│ 
+├── Cluster  for Data Engineers
+│    │
+│    ├── Serverless
+│    │     │
+│    │     └── Shared
+│    │           ├── Job Compute
+│    │           └── All purpose
+│    │
+│    └── Client managed
+│          │
+│          ├── Single User
+│          │    ├── Job Compute
+│          │    └── All purpose
+│          │
+│          └── Shared
+│               ├── Job Compute
+│               └── All purpose
+│ 
+└── SQL Warehouse for Data Analysts
+     │
+     ├── Shared
+     │    ├── Job Compute
+     │    └── All purpose
+     │
+     ├── Serverless
+     │             
+     │
+     └── Client Managed
+             ├── Classic
+             └── Pro
+```
+
+
+<img width="500" height="350" alt="image" src="https://github.com/user-attachments/assets/e474adfc-54d7-470a-9fb6-0bf046148144" />
+
+
+> **Serverless** warehouse : It is something that start immediately and always online. You can use it immediately.
+> - Old way was start your cluster(warehouse), wait for 5-10 minutes until databricks starts Azure Virtula Machine/AWS cirtual Machine.
+> - So It is the process which tool a lot of time.The speed  was not that fast. that's why we have something called Serverless. It is always online and you pay for only if you use the data.
+> - So once you click on Start warehouse then only you're going to pay for the whole infrastructure for Microsoft and Databricks if you're using it otherwise if you just start and not using it then you will not have to pay.
+> So only if you start using your data, processing your data then only you will pay for the service.
+
+Note : Serverless is a type of warehouse that is always online and it is fair to use bcuz you onlly have to pay for the service if you're using and processing your data. Earlier you had to pay for resources without even using it. Even you just started it.
+
+<img width="350" height="250" alt="image" src="https://github.com/user-attachments/assets/98feb0cc-6559-4f3e-a083-523c7f73ba98" />
+
+
+So as data analyst yoou don't have to go to compute section, you always go to the SQL section there you find SQL Warehouse from there you can start using it.
+
+One thing cool here in serverless is that since we're at cloud and we're doing the project in the cloud if we're working daily like building a dashboard and stuffs and working with data we always use the size smalll which means small servers but let's say we have presentation day and an important meeting and we have to show a very important analysis to manage and stakeholders, so on that day, we can make the size large in case to make things faster and smooth. and then get back to the small size so that it will cost you less.
+
+> In the cloud, you can always scale up, make everything very fast for important days and scale down everything so that it costs you low while not needed.
+
+<img width="350" height="250" alt="image" src="https://github.com/user-attachments/assets/7b2c04ee-0998-4d8d-9174-c35a367691bb" />
+
+You can also decide to shutdown after 10min or so on. It is so easy to configure now.
+
+<img width="350" height="250" alt="image" src="https://github.com/user-attachments/assets/4840d037-cfab-47c1-966f-068433023b02" />
+
+
+But How Data Engineers do the compute is completely different than this, there we need to connect databricks to Azure/AWS/GCP stuffs? We will see it later 
+
+</details>
+
 
 
 <details>
-  <summary> <b> Databricks Workspace UI </b>Interfaces </summary>
+  <summary> <b> Summary of Databricks UI </b>Interfaces </summary>
 
 - **Catalog (Unity Catalog)** : Where data lives, how it’s organized, and who can access it.
     
@@ -713,6 +863,96 @@ There are a few simple ways to do this, depending on where your data lives.
 1. **Upload a local file** : Best for learning and quick practice.
     
 2. **Add data to a Volume** : More organized and closer to real project setups.
+
+
+<details>
+  <summary> How to upload your data as a Data Analyst? </summary>
+
+Go to `Catalog` > `My organization` > `workspace` > `default schema`
+
+- You can either put you data in default schema or you can create your schema and put data inside that schema.
+
+Right Click on `workspace` > Create Schema option > "salesDB" create
+
+Now you have salesDB schema, It is empty now you can put your data inside it.
+
+Generally when you work on any project you generally don't manually upload data to databricks. <br/>
+It is just for Data Analysts in order to do quick exploration. But We as Data Engineer we never upload data as like this.
+As Data Engineer we connect the data using the Networking and codes and bring everything yo databricks in order to build automated pipelines from the sources. We don't upload data manually to databricks.
+
+Here we will do it manually as in free edition we can't build those automated pipelines to get the data from the sources.
+
+So, There are 2 ways to do it, Hard way and easy way.
+1. Click on `New` > 'Add or upload data' > `Create of modify table` | `Upload files to a volume` | Databricks Connectors : ServiceNow, Salesforce, Amazon S3, Dynamic 365 etc | Fivetran Connectors : GoogleDrive, OneDrive, Jira, GitHub, webhooks, Apache Kafka etc |
+
+We have a lot of tools, you can create an account and you can start using the data that is avaialble on those platform. <br/>
+But in real projects data engineers should do real automations they don't use this way.
+
+Let's start with `upload files to a volume`
+- First thing you have to do is create a `volume` inside you schema like similar to table.
+- It is just a folder that you creating on your PC. lets call this `volume` "mydata"
+- There are 2 volume type either you can use unity catalog from Databricks  or you can use external valume in case if you want to do something externa in Azure/AWS.
+- We here stay with databricks, we're not using any other cloud provider.
+- Make sure you're at right `workspace` and correct `schema` > Create the volume.
+
+<img width="350" height="250" alt="image" src="https://github.com/user-attachments/assets/b6628a6d-1dfb-40e5-8ae2-64a8b27c0e8a" />
+<img width="350" height="250" alt="image" src="https://github.com/user-attachments/assets/1f688c43-f968-4489-b3aa-bf1bde01fb8a" />
+
+So, volume named "mydata" is created it is nothing but a folder and it is in the cloud. And you can put inside it whatever you want like images, videos , csv files etc.
+
+In order to upload things we can click on `Upload to this volume` or `New` and upload your data/datasets.
+
+Make sure the correct destination for your files > 'Upload' | uploaded successfully.
+
+Now in order to check you can go the `catalog > workspace > salesDB > mydata > file1, file2, fileN`
+
+<img width="350" height="250" alt="image" src="https://github.com/user-attachments/assets/cb0c3f21-5ea1-4454-80f8-058cb56cc880" />
+<img width="350" height="250" alt="image" src="https://github.com/user-attachments/assets/b404fab7-0879-4ceb-92e7-b186e6d8524f" />
+
+Now question is How to Query the data? <br/>
+For that go to `New` > `workspace` > `Create` something called `Notebook` <br/>
+- Now we can write SQL query inside the Notebook or 
+- if you don't want to do it in Notebook you can go and use `SQL Editor` > `New query` it does the same thing. 
+
+```sql
+SELECT * FROM csv./volumes/workspace/salesDB/mydata/dim_customers.csv
+```
+- start and attach compute and run it.
+- Here, we're not using the databricks delta files we're just using the csv files and querying the data. So we're not using the full benefits of databricks.
+
+
+<img width="500" height="350" alt="image" src="https://github.com/user-attachments/assets/f7d8685a-5852-409a-b2be-7ca3c9143dd0" />
+
+<img width="500" height="350" alt="image" src="https://github.com/user-attachments/assets/2096fea2-9156-45d6-a4c7-677600359341" />
+
+But this is a bad to work with your data iniside the databricks.
+
+We should always work with a delta tables, not with volumes, volume is something which is not prepared, it's something that is not clear that's why It is not recommended to work with volumes instead create a delta table.
+
+Creating tables is very easy. <br/>
+Go to `New` > 'Add or Upload data' > `Create or modify data` > `upload data` > `create table` <br/>
+Databricks doing everything behind the scene like creating a table, creating delta files, and storing everything inside delta files or parquet files. You will not see all those stuffs.
+
+Now when you go to `catalog > workspace > schema > new_table` 
+
+
+<img width="500" height="350" alt="image" src="https://github.com/user-attachments/assets/87524178-344b-4d29-9bf2-f159720f4a9d" />
+
+
+So basically we created the table using delta technology open file. Now all the features of `PySpaark`, Multi-processing, parallel processing is going to be unlock on this table bcuz we're using an advanced format.
+
+Of course, we're not seeing the delta files now, you're working with delta tables like tables in any SQL database. Everything back to SQL for you.
+Now we're using delta files, using whole platform of multi-processing, everything is in RAM (in memory processing)  All these complex things become very friendly for Data Analyst and that's possible on this Databricks platform. So, We're working on cloud with multi-processing the big data with huge complex queries with fast performance. Now you're not working in simple database, you're woking directly in data lake. So basically we're working directly in scalable system.  
+
+<img width="350" height="250" alt="image" src="https://github.com/user-attachments/assets/ece7d229-e7a2-4e3f-85da-f0f1a49e96c1" />
+
+
+> Note : Volume is not for Data Analyst, It is something for Data Engineers.
+
+
+</details>
+
+
 
 #
 </details>
