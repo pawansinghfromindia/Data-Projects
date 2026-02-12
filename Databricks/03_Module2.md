@@ -229,8 +229,6 @@ So, Now companies are forced to move from Excel to PowerBI to Data Warehouse to 
 <details>
   <summary> Expand </summary>
 
-<details>
-
 <br/>
 
 In order to let's see How a Data Analyst use databricks in a company
@@ -238,7 +236,6 @@ In order to let's see How a Data Analyst use databricks in a company
 **Databricks in Company's workflow** <br/>
 <img width="500" height="350" alt="image" src="https://github.com/user-attachments/assets/9fab28b9-8f7a-4477-a1cf-67e151adc443" />
 
-</details>
 
 ###  a)  Data Analyst Role in Databricks
 > Building Reports/Dashboards and Data Explorations
@@ -342,7 +339,44 @@ With that Databricks AI becomes smart enough to answer business questions using 
 plain english to SQL.
 
 
+<img width="350" height="250" alt="image" src="https://github.com/user-attachments/assets/bbe9883b-d383-4fac-9ca9-248553c7e9e3" />
+<br/>
+<img width="350" height="250" alt="image" src="https://github.com/user-attachments/assets/9b3a1c32-fb49-4e3a-a622-db53459a7634" />
+<br/>
+
+With SQL query we can't do advanced analytics. 
+Don't Expect Genie AI to give you answer why? It will take time to go there. <br/>
+It can do SQL Query and also aleady doing BI work. So, Databricks rename it to Genie AI/BI
+
+
+<img width="350" height="250" alt="image" src="https://github.com/user-attachments/assets/2ed481bd-790d-48de-afd8-22becb6ab0e8" />
+
+
+It's very powerful and future for interacting with Big Data.<br/>
+It's not like a simple models like LLMs bcuz here in databricks a whole team is working to keep teching the AI about data that is stored and it is 
+very specific to your company and project specific oriented which is trained with your data also. 
+
+Databricks is inversting huge amount to money in order to make this work at best level. So, It's the future. <br/>
+As a Data Analyst we can't compete with this Genie AI/BI, they hired Data Analyst Specilalist who teach these models. So Genie AI/Bi will going to win.
+It's bcuz they're inversing huge amount of money. 
+
+Databricks is going to generate huge amount of money, the thing is why it's bcuz as a Data Analyst or Data Engineer writing 5 or 6 or even 20 queries
+in a day for which they're using the resources, but when you provide prompt facilities to business users they're going to write it multiple times and each
+prompt will generate a query using resources for each time you're paying for it. 
+
+<br/> 
+<img width="350" height="250" alt="image" src="https://github.com/user-attachments/assets/26592d84-fe7d-4534-af3a-68403736150e" />
+<br/>
+
+As a Data Analyst you will be never be able to ask right questions, It is the Business users can ask the right questions bcuz they  know and understand the business. You as Data Analyst always a middle guy between Business Users and big data store in data lake. 
+
+You as Data Analyst is going to remove from this picture in older ways, Now you have to work with AI and Platform in way you will correct the AI, you will 
+verify the things which AI is generating and you will now interact with AI in a loop to make AI better in answering the business questions. 
+
+AI can't generate always right answer, without a Data Analyst, but will halucinate, incorrect data etc. 
+
 </details>
+
 
 
 <details>
@@ -521,7 +555,7 @@ This allows standard users to ask questions using natural language instead of SQ
 This reduces dependency on analysts for every question and makes analytics more accessible.
 
 
-## Key Takeaway
+### Key Takeaway
 
 Databricks enables data analysts to move from exploration to collaboration, from draft insights to enterprise reporting, and 
 now even to AI-driven analytics, all on top of the same trusted data foundation.
@@ -533,274 +567,179 @@ now even to AI-driven analytics, all on top of the same trusted data foundation.
 ## 2.4 Project: Data Analytics using Databricks i.e. Assignment
 
 <details>
-  <summary>  Expand  </summary>
+  <summary>  Project Details  </summary>
 
-In this project, you will build a **complete Data Lakehouse** from scratch using **Databricks** and the **Medallion Architecture**.
+In this project, you will work like a **real data analyst** using **Databricks**.
 
-You will start with raw data and step by step transform it into clean, reliable, and business-ready datasets using the **Bronze, Silver, and Gold** 
-layers. This is how modern data platforms are built in real companies.
+You already uploaded the data in the previous homework.
 
-You won’t just write code. You will design architecture, improve data quality, model data for analytics, and automate everything with pipelines and jobs.
+Now your job is to **explore the data**, **turn insights into dashboards**, and finally **let users talk to the data using AI**.
 
-By the end, you will have a production-style Lakehouse you can confidently showcase and extend further.
+We will move step by step, just like in a real company.
 
-Let’s build it the right way.
-
-#### Project Phases & Guide
+**Prerequisite** <br/>
+Make sure you have completed the homework and the data is already loaded into Databricks
 
 <details>
-  <summary> <b> Phase1 - Project Initialization </b> </summary>
+  <summary> <b> Phase 1: Data Exploration (SQL Editor) </b> </summary>
 
-<br/>
+<aside>
 
-> Goal: Preparation steps before building the Lakehouse.
- 
-- [ ]  **Design the architecture**
-    - [ ]  Read Databricks reference for the project → [**LINK**](https://docs.databricks.com/aws/en/lakehouse/medallion)
-    - [ ]  Draw the data lakehouse architecture using draw.io or similar → [**LINK**](https://www.drawio.com/)
-- [ ]  **Create GitHub repository** → [**LINK**](https://github.com/)
-- [ ]  **Connect GitHub to Databricks using URL (**Workspace → Create → Git Folder)
-- [ ]  **Create Lakehouse schemas (Unity Catalog) using**UI or SQL**:** `bronze` `silver` `gold`**
-- [ ]  **Create a volume inside bronze schema** `raw_sources`
-- [ ]  Upload the 6 CSV files from engineering folder into the Bronze volume → [**LINK**]()
+> **Goal:** Understand the dataset and get comfortable using the Databricks SQL Editor.
 
-> Result: Project is ready to start building Bronze, Silver, and Gold layers.
+</aside>
 
-# 
+- [ ]  Open **Databricks → SQL Editor**
+- [ ]  Select the correct **catalog** and **schema**
+- [ ]  Run and save queries for:
+    - [ ]  List all tables `SHOW TABLES;`
+    - [ ]  Inspect table structure `DESCRIBE TABLE dim_customers;`
+    - [ ]  List unique customer countries
+    - [ ]  List product categories, subcategories, and products
+    - [ ]  Calculate:
+    - [ ]  Total sales, Total customers, Total products, Total orders
+    - [ ]  Sales by product, Sales by category, Orders over time
+
+<aside>
+
+> Result: You know how to browse the structure of your data in catalog and how to write query inside databricks SQL Editor
+
+</aside>
 </details>
 
 <details>
-  <summary> <b> Phase2 - Building Bronze Layer </b> </summary>
+  <summary> <b> Phase 2: Turn Queries into Visuals (Databricks Dashboards) </b> </summary>
 
-<br/>
+> Goal: Start visualizing what you discovered using Databricks dashboards.
 
-> Goal: Build the Bronze layer by ingesting all raw CSV files into Delta tables without any kind of transformations.
+Open saved queries in SQL Editor
 
+- [ ]  Open your saved SQL queries,  Click on **visualization**
+- [ ]  Try different chart types: Line charts, Bar charts, Pie charts
+- [ ]  Add The Visuals that you think interesting about the data into a new dashboard called “Exploring Sales Data”
+- [ ]  Add title for the new dashboard
+- [ ]  add 1-2 filters
 
-- [ ]  Create a folder in the repository called `bronze` to store all scripts inside it
-- [ ]  **Create Bronze notebook**
-- [ ]  **Initial ingestion (manual)** For each of the 6 CSV files:
-    - [ ]  Read the CSV into a DataFrame
-    - [ ]  Write the DataFrame to a table in the Bronze schema using overwrite mode, and use a source-system prefix in the table name
-           for example `erp_` or `crm_`) to clearly identify where the data comes from.
-    - [ ]  Run the script and query the bronze table to verify it is loaded correctly
-- [ ]  Run the whole notebook to see if everything works successfully.
-- [ ]  Commit & Push your changes to the GitHub repository
+<aside>
 
-**Bonus Advanced Task**
+> Result: You understand how to move between Databricks SQL Editor and Dashboards.
 
-**Code review &** Identify repeated logic
+</aside>
 
-- Create a dictionary to store file paths and table names
-- Loop through the dictionary to ingest all files
-
-> Result: All 6 raw source files are ingested into dedicated Bronze tables with no transformations applied.
-
-# 
 </details>
 
 <details>
-  <summary> <b> Phase3 - Building Silver Layer </b> </summary>
+  <summary> <b> Phase 3: Build Dashboards Based on Business Requirements </b> </summary>
+
+Goal: Build two dashboards based on user requirements.
+
+### Sales Dashboard Requirements
+
+Build a Databricks dashboard that shows:
+
+- Total Sales
+- Total Profit
+- Total Quantity
+- Sales trend over time (monthly)
+- Sales by product category
+
+### Customer Dashboard Requirements
+
+Build a Databricks dashboard that shows:
+
+- Total number of customers
+- Average sales per customer
+- Total number of orders
+- Number of orders by customer age group
+- Top 10 customers by sales
+
+Do the Following for each Dashboard
+
+- [ ]  Create New Dashboard
+- [ ]  Add data by writing a SQL query that collects all required fields
+- [ ]  Add a clear dashboard title
+- [ ]  Build all required visuals
+- [ ]  Add local filters for individual visuals
+- [ ]  Add global filters for the entire dashboard
+
+</details>
+
+
+<details>
+  <summary> <b> Phase 4: Chat with Your Data Using AI Genie </b> </summary>
+
+
+> Goal: Enable users to ask questions using natural language instead of dashboards.
+
+- [ ]  Create Genie space: **Chat with Sales**
+- [ ]  Select which datasets are available to Genie
+- [ ]  Ask at least **10 questions**
+- [ ]  Review generated SQL for each answer
+- [ ]  Give feedback on incorrect results
+- [ ]  Update Genie instructions
+- [ ]  Re-test the same prompts
+
+</details>
+
+###  🎉 Congratulations
+
+You’ve just completed a **full analytics workflow using Databricks**.
+
+You explored real data using SQL, turned insights into dashboards, and enabled users to interact with data using AI.
+This is exactly how modern analytics teams work on top of a Lakehouse.
+
+
+<details>
+  <summary> <b> Portfolio & Career Tip </b> </summary>
 
 <br/>
 
->  Goal: It is time to clean and transform our bronze data and load the clean results into silver layer.
-> This is usually the most time consuming phase of the project and the fun part!
+If you are preparing for **job interviews**, make sure you can clearly explain:
 
-- [ ]  Create repository structure
-    - [ ]  Create a folder called `silver`
-    - [ ]  Create two subfolders:  `crm` `erp`
-- [ ]  For each Bronze table (6 tables)
-    - [ ]  Create a Silver notebook `silver_<source>_<table_name>` e.g.  `silver_crm_cust_info`
-    - [ ]  Analyze data quality using SQL and List all identified issues
-        - [ ]  Find duplicates
-        - [ ]  Validate string values: Check extra spaces, Identify abbreviations to normalize
-        - [ ]  Validate dates values: Check Data Type, check the format, handle missing values
-        - [ ]  Validate numeric values
-        - [ ]  Standardize business key IDs to ensure tables can be joined correctly.
-        - [ ]  Check the name of columns and table and make a plan how to rename them to something friendly.
-    - [ ]  Section 1: Read data Bronze Table and Load it into a DataFrame
-    - [ ]  Section 2: Transform data
-        - Fix issues one by one
-        - Keep transformations small and clear
-        - Avoid one large transformation block
-        - Use Spark SQL or PySpark (Python)
-        - Before going to next transformation always check the result “df.display()”
-    - [ ]  Sanity checks the final DataFrame before writing
-    - [ ]  Section 3: Write the DataFrame to a new Silver Table and use a friendly name for the new table
-    - [ ]  Sanity checks of silver table after writing
-    - [ ]  Finalize notebook
-        - [ ]  Run the full notebook end to end
-        - [ ]  Review structure and readability
-        - [ ]  Add comments and documentation
-        - [ ]  Clone the notebook as a template for the next table
-    - [ ]  Commit & Push your changes to the GitHub repository
+- How you explored data using Databricks SQL
+- How you validated insights with business users
+- How you designed dashboards for different audiences
+- How AI changed the way users interact with data
 
+Being able to clearly explain this workflow is a **strong differentiator** and can be one of the reasons a company decides to hire you.
 
-**Bonus Advanced Task**
+This is real, practical analytics work.
 
-- Review all 6 Silver notebooks and identify repeated code
-- Reduce repetition by:
-    - Using a config file with loops, or
-    - Creating reusable Python functions
-
-**Result:** Cleaner, scalable code and a strong step toward senior data engineering.
-
-> Result: All Bronze tables are transformed into analytics-ready Silver tables with validated data quality and standardized structure.
-
-# 
 </details>
 
 <details>
-  <summary> <b> Phase4 - Building Gold Layer </b> </summary>
+  <summary> <b> Next Steps! Connect Databricks to Power BI </b> </summary>
 
-<br/>
+Now that you’ve learned how to do analytics inside **Databricks**, the next step is to use **Power BI** for standard reporting.
 
-> **Goal**: 
-> - Break the data model away from the source systems and introduce a new data model that is suitable for business intelligence and analytics.
-> - Use dimensional modeling to transform the Silver tables into a star schema with fact and dimension tables.
+**What to do next:**
 
+- Install **Power BI Desktop**
+- Connect Power BI to Databricks using the **Databricks SQL Warehouse**
+- Authenticate using your Databricks workspace credentials
+- Select the **tables** you want to report on
+- Build production-ready reports for a large audience
 
-- [ ]  Data Modeling Phase
-    - [ ]  Understand the content of each Silver table
-    - [ ]  Map each table to a business object such as customers, products, or sales
-    - [ ]  Use draw.io to design the target data model. Example: `fact_sales`, `dim_customers`, `dim_products`
-- [ ]  Build Gold tables - For each table in the new model:
-    - [ ]  Write an SQL query
-        - [ ]  Join all relevant Silver tables for the dimension or fact
-        - [ ]  Ensure no duplicates after joins
-        - [ ]  Validate the query output
-    - [ ]  Load the result into a DataFrame
-    - [ ]  Write the DataFrame to a new Gold table using a clear naming prefix such as `dim_` for dimension tables or `fact_` for fact tables.
-    - [ ]  Sanity checks of gold table after writing
-- [ ]  Commit & Push your changes to the GitHub repository
+### What You Do in Power BI
 
+- Build standard dashboards and reports
+- Create measures and calculations
+- Add filters and slicers
+- Optimize visuals for business users
+- Publish reports to Power BI Service
 
-**Bonus Task - Data Product Ownership**
+### Why This Step Matters
 
-At this point, the data is ready for analytics and your tables represents a **data product**
+- Business users consume Power BI, not notebooks
+- Reports are easier to share, secure, and maintain
+- Databricks remains the single source of truth
+- This workflow matches how analytics teams work in real companies
 
-You are now responsible for making it reliable, clear, and easy to use
+Being able to explain **when to use Databricks and when to use Power BI** is a strong signal of real-world data analyst experience.
 
-**Enhance metadata in Unity Catalog**
-
-- Add meaningful descriptions to Gold tables
-- Add clear descriptions to all important columns
-- Ensure column names and meanings are easy to understand for analysts
-
-**Define data relationships**
-
-- Define primary keys for dimension tables
-- Define foreign keys between fact and dimension tables
-
-
-> Result: All Silver tables are transformed into business-ready Gold tables designed for analytics and reporting.
-
-# 
 </details>
-
-<details>
-  <summary> <b> Phase5 - Building the Pipeline </b> </summary>
-
-<br/>
-
-> Goal: Automate the end-to-end Lakehouse flow so data is processed reliably from Bronze to Silver to Gold.
-
-
-### Current Setup
-
-- 1 Bronze notebook
-- 6 Silver transformation notebooks
-- 3 Gold notebooks (dimensions and facts)
-
-To run each layer cleanly, we introduce **orchestration notebooks** that act as single entry points.
-
-
-- [ ]  **Create Orchestration Notebooks**
-    - [ ]  Silver orchestration: Create one Silver orchestration notebook that triggers all 6 Silver notebooks in sequence.
-           Use **`dbutils.notebook.run`** to run notebookes.
-    - [ ]  Silver orchestration: Create one Gold orchestration notebook that triggers all 6 Silver notebooks in sequence.
-           Use **`dbutils.notebook.run`** to run notebookes.
-
-
-- [ ]  **Create a Databricks Job**
-    - [ ]  Go to **Databricks → Jobs & Pipelines** then create Create a new Job
-    - [ ]  Create a new Job and Give it a clear name, for example: `loading_bike_data_lakehouse`
-    - [ ]  Add three Tasks:
-        
-        <img width="881" height="170" alt="image" src="https://github.com/user-attachments/assets/47ef2b39-5a76-4c46-8566-4215607db127" />
-        
-        - [ ]  Bronze layer: bronze notebook
-        - [ ]  Silver layer: silver_orchestration that triggers all other silver notebookes
-        - [ ]  Gold layer: gold_orchestration that triggers all other gold notebookes
-
-
-- [ ]  **Run and Validate**
-    - [ ]  Click **Run All,**
-    - [ ]  Monitor the job execution
-    - [ ]  Ensure all tasks complete successfully
-    - [ ]  Verify Bronze, Silver, and Gold tables are created correctly
-
-- [ ]  **Schedule the Pipeline**
-    - [ ]  Add a trigger to run the job on a schedule (for example daily)
-    - [ ]  For the first few days: (Mointor the runes and check logs)
-    - [ ]  After three days, pause or adjust the trigger as needed
-
-# 
-</details>
-
-
-
 
 #
 </details>
 <!----------  Project: Data Analytics using Databricks i.e. Assignment ----------------->
 
-### Congratulations
-
-You’ve just built a complete **Data Lakehouse**.
-
-This is **Lakehouse 1.0** and it represents the core foundation of real data engineering work.
-
-
-### Portfolio & Career Tip
-
-You can confidently use this project as a **portfolio project**. You have my permission to do so.
-
-If you share it on **GitHub** or **LinkedIn**, I would appreciate it if you give credit to the original source.
-
-If you are **preparing for job interviews**, make sure you practice explaining this project:
-
-- Why you designed the Lakehouse this way
-- How data flows from Bronze to Silver to Gold
-- How you ensured data quality and scalability
-- How you automated everything with pipelines
-
-Being able to clearly explain this project can be a **strong differentiator** and may be one of the reasons a company decides to hire you.
-
-This is real, practical data engineering work.
-
-
-
-### Next Steps!
-
-From here, you can take your Lakehouse to the next level by adding more advanced capabilities, such as:
-
-- **Data quality checks**
-    - Row counts, null checks, duplicates, and business rules
-- **Reusable code and functions**
-    - Shared transformation logic, configs, and utilities
-- **New data sources**
-    - APIs, Kafka, streaming data, and operational databases
-- **CI/CD pipelines**
-    - Automated testing, deployment, and environment promotion
-- **Security and governance**
-    - Access control, row-level security, and data masking
-- **Monitoring and observability**
-    - Pipeline health, alerts, and performance tracking
-- **Incremental and streaming pipelines**
-    - CDC, MERGE patterns, and real-time data processing
-
-This is exactly how real-world data platforms evolve.
-
-Strong foundations first, then continuous improvement.
