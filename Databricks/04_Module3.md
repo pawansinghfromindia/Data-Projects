@@ -77,7 +77,7 @@ With this we connect our databricks to PowerBI very easily.
 ## 3.1 The evolution of data management (Warehouse, Lake, Lakehouse)
 
 <details>
-  <summary> Class Expand </summary>
+  <summary> Expand it for raw explanation </summary>
 
 <br/>
 
@@ -130,9 +130,101 @@ So Data Warehouse as classical warehouse starts failing. <br/>
 
 
 There new title is introduces for ETL Developer as Big Data Developer or Data Engineer where we say Databases are really crap to build a data platform 
-Around 2010, in order to fulfill those requirement, we're going to build a ***Data Lake***.
+
+Around 2010, in order to fulfill those requirements, we're going to build a ***Data Lake***. <br/>
+Now we as Data Engineer don't need database(data warehouse). Now we have a very very cheap storage and can pull whatever you wish likes from Databases sources, images, videos, JSON etc and pull and push it in one place i.e Data Lake. 
+
+But Now Data Engineer will not do Transformations for you, Now Data Engineers are only Loading Master.
+It is cheap, fast and everything and everyone need data they can grap the data from Data Lake. <br/>
+Now Data Analyst, Data Scientists, Power Businedd Users and Standard Business users can access the data and Transform it and do their job.
 
 
+<img width="350" height="250" alt="image" src="https://github.com/user-attachments/assets/b6c2e8aa-a7e8-4be1-9529-c9a29b11094a" />
+
+
+But Transformation is start giving problems. Bcuz Transformation is one of the most annoying step on ETL, bcuz data is very raw, in many projects we have 
+to do Data Transformations for months in order the make data very friendly for Data Analyst, BI Users and everyone that's why It involvers various steps like Data Preparations, Data Cleansing and so on. 
+
+So Transformation is the biggest part after getting your data into one source, bcuz this data is going to used in number of projects and each project has 
+to do these Transformation which is very hard, heavy lifting , expensive and annoying. 
+
+SO, Data LAkes becomes just like a garbage where you put the data inside it. It is costly for the Transformation, It is not costly for storage, It is very cheap.
+
+Imagine from one Data Sources, the Transformation taking 6 month and suppose there are 10 projects, so transformation is going to happens 10 times.
+So If you just do EL and T is done by every project that idea got failed.
+
+<img width="350" height="250" alt="image" src="https://github.com/user-attachments/assets/a93665e9-dcfe-4e3a-9395-d574c3c533c9" />
+
+
+So, Should we go back to Data Warehouses?
+No, Data Warehouses are expensive for huge data and not suitable for all different types of data like images, videos or JSONs files and also not scalable.
+Problem with Data WareHouse -> Expensive, Not Suitable for different types of data, not scalable.
+
+So Ideas was to make some kind of **Data Lake** together inside a **Data Warehouse** and is titled as ***Data lakehouse***.
+- So we still need everything to be fast, cheap storage, accepts any kind of data, but now Data Engineers have to take Transformation back which make sense. So Data Engineers will do now all **ETL**.
+- Data Engineers started doing some kind of Warehousing again but on a new technology like They're going to make 3 layers and all of them are Data Lakes based on files not databases.
+  1. Bronze Layer
+  2. Silver Layer
+  3. Gold Layer  
+
+- So Now Data Engineers, Extract the data, load it in Data Lakes and then do Transformation in between these 3 layers.
+
+- We can call these layers anything, Stage1, Stage2, Stage3 or presentation layers. Like in different companies their Data Architect name it differently.
+  like raw -> Processing -> refined or bronze -> Silver -> gold
+
+- So we do things step by step not everything in one place.
+- With this concept we are ready to serve anything like if Data Analyst , BI Developer, or Data Scientists, Power Business users or Standard Business users
+
+<img width="350" height="250" alt="image" src="https://github.com/user-attachments/assets/63fe0e6d-afa8-44a2-8b44-6d11b69e8604" />
+
+<br/>
+
+We spend almost 20 years in building Data Warehouse and then in 2010 we start doing Data Lake, and then Data Lakewarehouse is brand new introduced not from industry but by universities Data Science research sponsered by DataBricks they provide their platform. 
+
+It was big idea but we have big struggle still until now. because those Transformations in between those 3 layers are still heavy for Data Engineers bcuz
+Data Analyst and Business know the data very well like what they exactly need. But as a Data Engineers when we do transformations we ask them a lot of questions what to keep and what to remove from the raw data. 
+
+Example imagine you have 20 Data Source systems, you have to understand each of them in order to make that Transformation that's why when we are about to start Transformation we bring the Data Scientists, Business Users people joining us building the LakeHouse. 
+
+In big companies, you don't have a single point of truth for whole company at Data Lakehouse. They will not put everything at one place like Mercedes-benz or Netflix etc. That's why new concept is introduced around 2024-25 called **Data Mesh**
+
+<img width="500" height="350" alt="image" src="https://github.com/user-attachments/assets/f4fe07d8-5949-46a3-9fd3-69e5965807d3" />
+
+
+As company is big, so each domain now going to build their own Data Lakehouse like Domain1 Lakehouse, Domain2 Lakehouse.
+A central team is building data products, buildind the gold layer but only for their domain.
+Eg: If we're making Lakehouse for Car Engineering, we will not go to the sales. 
+
+So As a Data Engineer, we're focus on only domain and build the Lakehouse and build the data product gold layer and other will do another. We never build the whole enterprizes as a whole. 
+
+So The idea of **Data Mesh** is to build one Data Lakehouse for the whole company. That's why it is netwroking of different domain data. So we are basically building Domain driven data products. 
+
+Databricks is exactly preparing for this to building something called **Data Mesh**. <br/>
+It is domain driven data architecture to make a **data mesh** but in order to do that you need 2 things :
+1. Maketplace
+2. Data Catalog
+
+So, suppose we're working as data engineer and build a very amazing gold data product for the users. Now we have to tell everyone about the new data products that we build. So in order to put our data products (gold layer) somewhere a place something called **Market Place** in the company and I need a **Data Catalog** to explain our data products.
+
+Now supoose a data scientist will come to **marketplace**, here he/she sees about a data products from **Data catalog** read about that particular Data products in the data catalog and then goes/comes to us(data Engineers) to get the analysis about that particular data product.
+That's why we need a marketplace and data catalogs. <br/>
+
+> Databricks is moving in direction to building this. We will see whether it's going to be successful or not. But It is all about how the company make the **Data Strategy** 
+
+Currently things look good, we're able to use Databricks as a single point platform to help in making Data Strategy but It's all about the people who are using the platform. It's always mindset that's prevail over only having tool is not enough. 
+
+We have something called unity calalog in Databricks.
+
+> **Unity Catalog** : This is the catalog that is available for the whole company.
+
+<img width="350" height="250" alt="image" src="https://github.com/user-attachments/assets/210cddfa-f18d-43cd-963f-7262e19c79e2" />
+
+When you go to `Catalog or Unity Catalog` > inside `My oraganization` > you will see all the `Workspaces` and their `catalogs` available inside the company. 
+
+
+> Steps in the development of Data Management, As a Data Engineers we have to understand those concepts to understand what you're doing not just blindly doing stuffs on old technology or even new.
+
+This is all about Data Management and most of the companies are trying to implement this bcuz this make sense that each domain build their own data Lakehouse not only that you can mix up data warehouse in data lake.
 
 </details>
 
@@ -257,6 +349,286 @@ Built to solve organizational scaling, not a replacement for lakehouse but an op
 <!------------- The evolution of data management (Warehouse, Lake, Lakehouse) ------------>
 
 ## 3.2 What Data Engineering is and it evolved
+
+<details>
+  <summary> Expand it for raw explanation </summary>
+
+<br/>
+
+> **One Machine to Hadoop to Spark to Databricks platform**
+
+As a Data Engineer we worked on Databases and  Data Warehouse before like 15 years ago.
+We use ETL tools like [Talend renamed to Qlik](https://www.talend.com/) <br/>
+You have a lot of ETL tools in the market that are trying to push their on-premises solution for those stuffs are now almost dead.
+
+We're not using anymore ETL Tools, We're not trying to build any data lakes, Now things moving to platforms like Data Bricks, Snowflakes, Microsoft Azure Data Factory and Synapse, Fabric etc. So these platorms are enabling different tools to support those technology. 
+
+<img width="350" height="250" alt="image" src="https://github.com/user-attachments/assets/9de6bde1-9fe0-44f0-85f4-b1e9bb414cf8" />
+
+
+Let's move to the Databricks.
+
+So, Databricks is a platform that supports Spark technology, They're the same team who developed the Spark where It was a very simple idea you can't process the data using a single Machine, It will not work as data increase. <br/>
+So we need distributed machines in order to process huge data like Data Transformation, Data Agggregations and stuff like that.
+
+Spark can splits the into multiple machines in order to work parallelly and they collect the data in the final result.
+
+This is currently best practices on how to process massive huge amount of data.
+
+Before Spark we have Hadoop, but issue with Hadoop was it was using HardDisk in order to store data but with Spark, It enable in-memory processing (using RAM instead of HDD) that makes it faster.
+> Spark is a distributed system, using in-memory processing(RAM) to have faster speed.  
+
+This was the massive amount of work for Data Engineers to make setups and configurations that's why we have a plaform which provides easy way to work with huge data without doing configuration and infrastructure and stuffs, just focusing on the Data Project works and platform name is **Databricks** which does everything from setting configurations and infrastructure stuffs hidding the complexity from you Databricks team preparing everything in background,  we( as Data Engineers)  just have to use it correctly and only focusing on the project on how to do ETL and how to move data.
+
+So, If you don't want to use databricks and want to do hardcoded, of course you can use Spark and make configurations on your own(if you're expert), buy virtual machine from Azure, you can make full setup like Databricks. But imagine you have a lot of project in the company and each projects needs configurations and all those stuffs, maintainence and another things which cost a lot of time and resources. It's better to use a tool like Databricks and makes our life easier.
+
+<img width="350" height="250" alt="image" src="https://github.com/user-attachments/assets/78ad36d0-ba90-4ebc-805e-d0d0243f8c81" />
+
+<br/>
+
+> **Spark Engine**
+
+Since, We have amazing Engine i.e **Spark Engine**, The Engine is from Spark, This is the brain, this is heart of databricks. So this is going to split the tasks into multiple machines and start managing the memory and stuffs.
+
+<img width="350" height="250" alt="image" src="https://github.com/user-attachments/assets/f65d549d-fa47-4d34-99ee-82c9df066cf0" />
+<br/>
+<img width="350" height="250" alt="image" src="https://github.com/user-attachments/assets/070314d9-4d08-459f-8d0b-a0e0b3e5c34f" />
+<br/>
+For you as Data Engineer/Analyst using databricks, you have 2 ways to giving the task to ***Spark Engine*** 
+
+> **Spark SQL to Spark Engine**
+
+1. You can use only SQL, not anything else (Python, PySpark). So you have engine called **`Spark SQL`**, so your SQL query will send to Spark SQL engine and Spark SQL will go to Spark Engine and do the query. <br/>
+This is something Databricks teams behind the scene pushing a lot in order to have you working with SQL and to build things not only Data Analyst but also Data Engineers can do almost every stuffs using simple SQL to build your data products. <br/>
+Note : But It is only for not complicated stuffs like you have only 10-20 files then It is understand to build data lakehouse using only SQL. but if you want to do something professional and complex we have another way
+<br/>
+
+<img width="350" height="250" alt="image" src="https://github.com/user-attachments/assets/5c8bb0a8-4dd8-456f-ba07-5fb4659a27cf" />
+
+<br/>
+
+> **PySpark to Spark Engine**
+
+2. Professional ways like you have complex logic where you're dealing with multiple scenarios like you have Kafka, Streaming stuffs from multiple data sources, there only SQL is not enough, SQL code will be huge for the stuffs that's why we need Python. To work to Spark using Python we have something called PySpark. <br/>
+We can use python in order to build our data project. To work with Spark using Python, Python provide a library called **`PySpark`**  <br/>
+We have to install it, which is already installed in Databricks.
+
+```py
+pip install pyspark   
+```
+```py
+pip install pyspark[sql,pandas_on_spark,connect]
+
+# This is to include optional components like SQL, pandas API on Spark, or Spark Connect,
+```
+```py
+import pyspark
+
+print(pyspark.__version__)   
+```
+
+So, We can use PySpark in order to work with big data using Python in Spark technology.
+- PySpark looks very very similar to SQL like in SQL you do `Create, drop, Select, JOIN, Merge, Update,Insert,Update, Delete, truncate, filtering, aggregations etc` everything what we can do in SQL we can do more than that in PySpark.
+- So you will find yourself that you're doing almost same thing SQL but in a new language called PySpark.
+- Now whatever you write in PySpark It is going to use same Engine Spark Engine in order to process your Queries.
+
+<img width="350" height="250" alt="image" src="https://github.com/user-attachments/assets/f916b357-07b0-41b6-97df-a38858ebfb26" />
+<br/>
+
+> **Spark SQL vs PySpark**
+
+Generally Junior Developers thinks that they're using SQL (SparkSQL) that's why slow performance buz not using PySpark. That's not true. At the end It doesn't matter whether you're using Spark SQL or PySpark both of Queries goes to Spark Engine behind the at the end. 
+
+Not only that we can put SQL statements into PySpark as well and it is called **PySpark SQL**
+
+So we have 3 different options :
+1. Either Write only `SQL`, It is known as ***Spark SQL***
+2. Or you can write only `Python`, It is known as ***PySpark***
+3. Or you can write `Python` + `SQL`, It is known as ***PySpark SQL***
+
+<img width="500" height="350" alt="image" src="https://github.com/user-attachments/assets/bbb95f33-62a0-4f8b-9acb-54d310b708e3" />
+
+<br/>
+
+we have to learn multiple concepts like Spark, Spark SQL, PySpark, PySpark SQL and databricks tools as well.
+
+So now we know : What is `Spark SQL`?, What is `PySpark`? and What is `PySpark SQL`? 
+- They're different ways to write code in order to communicate with ** Spark Engine**
+
+
+Let's jump to Databricks :
+
+As Data Engineer, the most important thing in Databricks you work with is `workspace`. You can connect here GitHub or create notebooks and many other things.
+
+<img width="500" height="350" alt="image" src="https://github.com/user-attachments/assets/f6b68619-ccad-4a5b-88c8-4be9f8a26e70" />
+
+In companies, as Data Engineers the thing we're going to use is **Notebooks**
+
+You can rename the notebooks, put it inside the folders and arrange it, save it and use it in pipeline in order to automate the thing, you can schedule it and many more things like history of notebooks, changes made in notebooks, there are a lot of features which makes your life easier. 
+
+Inside Notebooks you can write SQL using `%sql`, Pythons using `%python` or any other languaages like markdown using `%md` for comments or documentations explaining the datails about the Notebooks and each query what it is doing?
+
+<img width="500" height="350" alt="image" src="https://github.com/user-attachments/assets/8dee05d6-0cf8-4d4a-9bd6-b6a2fd830893" />
+
+<br/>
+
+Simple SQL(Spark SQL), It goes to Spark SQL Engine for processing.
+```sql
+%sql
+
+SELECT * FROM workspace.salesDb.dim_customers;
+```
+PySpark Code, It also goes to Spark Engine for processing
+```python
+%python
+
+import pyspark.sql import functions as F
+
+df = spark.table("workspace.salesDB.dim_customers");
+df.display()
+```
+PySpark SQL, It also goes to Spark SQL Engine for processing.
+```python
+%python
+# Create a SparkSession (if not already created)
+from pyspark.sql import SparkSession
+spark = SparkSession.builder.appName("SelectFromTable").getOrCreate()
+# not required in databricks already there
+
+df = spark.sql("""SELECT * FROM workspace.salesDb.dim_customers""");
+df.show();
+df.display();
+print(df);
+```
+All of these 3 ways are same, give exactly same performances bcuz all of them goes to Spark Engine behind the scene at the end
+
+We will have projects in companies where we can do everything in SQL.
+15 years ago, It was dream to work with distributed system using SQL that's possible bcuz we have Spark Engine which supports SQL/Python.
+
+
+> **Dataframe Concept**
+> - A DataFrame stores data in a tabular format where each column can hold different data types (e.g., numbers, text, dates), and each row represents a record.
+> - The structure is highly flexible and widely used in data science and analytics.
+
+Dataframe is something, you're going to here a lot if you use spark, Pyspark, Spark SQL. <br/>
+It is main thing that we use to do anything.
+
+So Dataframe concept is very important to understand. and It is very simple.
+
+All what we have to do as Data Engineer is we have source tables. <br/>
+We want to take data from the source and move it to the target. <br/>
+On the way as we're moving the data from Source to Target, we want to do data transformations.(Transform, Aggregate, Clean, Prepare the data for business).
+
+
+<img width="500" height="350" alt="image" src="https://github.com/user-attachments/assets/4fb8983f-b4ba-4167-a876-d1e0ef9cf770" />
+<br/>
+
+So, The concept of dataframe is in Spark, Pandas, R, Python, Snowflake(Snowpark) and others. It is not only limited to Spark
+
+So, First **read the data from the source**, put in in something called ***Dataframe***. Dataframe it is first in the memory and anything which we do to this dataframe It is going to process always parallelly.
+
+So, If we're using Spark It will go to Spark Engine. Pandas doesn't have parallel processing.
+
+So basically Dataframe is ready to be distributed on multiple machines.
+
+<img width="350" height="250" alt="image" src="https://github.com/user-attachments/assets/f95cef16-23f8-49e7-a8fb-351f921fb2f3" />
+<br/>
+
+If we data transformation, suppose GROUP BY or TRIM or UPPER  etc whatever you do as data transformation it always like you're doing it on dataframe.
+Dataframe is going to splitted into small data distributed on multiple machines and processed for different functions like Group BY, TRIM, UPPER etc and then returns back to the dataframe and become as a whole unit and your data is transformed.
+
+<img width="500" height="350" alt="image" src="https://github.com/user-attachments/assets/77392aa6-8daa-428d-987b-d0c7ebad767c" />
+<br/>
+
+So Dataframe is that something which is temporary. It is live as long as we have session open bcus here we're using in-memory processing(RAM).
+So, We take the a copy of the data from dataframe and do whatever we want to do and a the end if we want to save the result of transform data we create tables/views from the dataframe. 
+
+We usually don't immediately do transformations directly on the source of data. We always take copy this is the main thing to do. Here in PySpark we use dataframe. We do manipulation on it nad write it somewhere else. 
+
+This is actual concept of what data engineers do in a company. Whatever we do whether loading the data in bronze layer or silver layer, It's always we have to think about those 3 steps of (1. from where I read the data, put it in dataframe, do something about it like transform it or not and then write it back in a table. 
+
+Of course, on dataframe we can use SQL Spark or PySpak. SQL you must know about CTE, SubQueries etc where database Engine create temporary storage of your data in order to reuse multiple times.
+
+<br/>
+
+<img width="500" height="350" alt="image" src="https://github.com/user-attachments/assets/79278439-8462-4312-984b-ab230480f1a8" />
+
+<br/>
+
+So far we have learned, How to work with Spark? Main thing about spark like How we load data inside a dataframe and stuffs. It is important to understand those concepts otherwise you don't know why you're creating a dataframe.
+
+When you work with Databricks tool your source might be delta tables but once you load the data into one layer to another layer you always load it in delta table. So we always use delta tables inside databricks, we never use csv file to be written at the end.
+
+> We use a very advanced file format called delta files or delta tables.
+
+<img width="500" height="350" alt="image" src="https://github.com/user-attachments/assets/1c969e46-0d21-4520-8e71-a0624f9714a3" />
+
+
+Why we have files delta files/tables, why don't we have like databases tables? <br/>
+There is a big difference, you can see a lot of SQL Developers, they build warehouses, they load the data inside tables inside SQL Servers or PostGres or others. But as a Data Engineer we stop doing that since we're working in Data Lake, In Data Lake we always store the data as files, there is no more normal table like what we have in SQL Server Data Warehouses. Even with Data Lakehouse We store data files in the end. 
+- Of course files has different format and stuffs.
+- File format for databricks is an open format called Delta Table or Delta file.
+- So if you say, I'm developing a data lakehouse inside the databricks actually you're working with files and you have to have some basic understanding on how to work on the file(Delta file, a open format file) 
+
+**What is delta table?** or Delta file or Delta table.
+There are 2 types of file :
+1. **Close Format** like the one that is stored behind the scene in Databases, they can be only used for databases engine nowhere else. 
+2. **Open Format** It is something we can use it whereever we want. Like we can take a file and use it for AI or for Analytics or for BI whatever you need for. But Closed file inside the databases they can be only used for databases engine nowhere else.
+
+This File concept is developed from Spark Team. They said and wanted everyone to work only with Open File format, as we're using the files across the field not only limited to databases. 
+
+One of the amazing Open file format that we can use is Parquet file. 
+
+Parquet files are amazing for historization, where we can get history of file from the day we created to uptil the we're going to drop. 
+
+We as Data Engineers have always to main the history of data, always have possibility to travel back to the data see the history. If you read the documentation Warehousing, this was the main idea of building a data  warehouse is that I need store data as well as history of data. And Parquet file is an amazing technique or file format to do that.   
+
+<img width="500" height="350" alt="image" src="https://github.com/user-attachments/assets/89801153-8a90-40c5-9717-dd1efed11bcd" />
+
+
+Initially in databricks, there were no delta tables, there were only Parquet files.
+
+If you start working with files, you feel, they're not really safe to use if you do inserting new data, updating the files etc etc, the files can get easily corrupted, It is nighmare to work with files bcuz it's very hard to manage it, maintain it. It is very risky. That'w why databricks add a new techniques on top of those open files to make it easier to be used as well as manage and maintain safely in order to do operation on top of files.
+So that we as Data Engineers not suffer anymore with `Parquet files` we will work with more advancef file format `delta files` which makes our life easy and safe than working with those parquet files. 
+
+We can use PySpark to do operations like create, read, write, overwrite, append, travel history, optimization etc etcon these delta files very easily.
+Bcuz they not only use not delta tables inside parquet but also they have logs and metadata in order to maintain history and getting info inside the Delta files.
+
+<br/>
+<img width="500" height="350" alt="image" src="https://github.com/user-attachments/assets/d5a7c393-f749-4643-bb2a-1e077cab7a7a" />
+<br/>
+
+Everything that we see in catalogs, all are delta files or delta tables. (Behind the scenes parquet files and logs files and metadata files behind the scene)
+
+<img width="500" height="350" alt="image" src="https://github.com/user-attachments/assets/e5898b58-3ef9-4900-ba8f-6341740596ab" />
+
+<br/>
+
+```sql
+%sql
+DESCRIBE HISTORY workspace.salesDB.dim_customers;
+```
+This operation you can never able to do on normal databaseS like SQL Server, PostGres, MySQL. It is something that we can only do on delta files/tables 
+
+So, basically each interaction we're doing on a table Spark create a history of it. And with time we can check the history it's known as ***Time travel***
+```sql
+%sql
+
+SELECT * FROM workspace.salesDB.dim_customers VERSION AS OF 1
+```
+```sql
+%sql
+
+RESTORE TABLE workspace.salesDB.dim_customers TO VERSION AS OF 1
+```
+
+So, the more numbers of operations on delta table, the more numbers of log files will be there in delta file and with time things go slow bcuz databricks manage all of those file and for this companies has to pay for its storage and operations stuufs. So as Data Engineer we have to work with these files and pay attentions on these files and do optimization to boost the speed on interval basis 
+
+So, you can see with Spark, How SQL as language as a way to interact with Data is an important skills. 
+
+#
+</details>
+
 <details>
   <summary> <b> Expand </b> </summary>
 
@@ -416,6 +788,30 @@ It turns a folder of Parquet files into a table you can safely read, write, audi
 | ***Overwrite***	      | Deletes existing data and replaces it with new data |	Full reloads, rebuilding tables, development, small tables |
 | ***Append***	        | Adds new rows to existing data	                    | Incremental data that never changes                        |
 | ***Upsert (Merge)***  |	Updates existing rows and inserts new ones          |	Mutable data, late updates, slowly changing data           |
+
+There are 3 ways to insert the data in Spark :
+1. `Overwrite` : Delete the previous data and load it with the new one
+2. `Append` : Keep the previous data as it is, insert the new data below that. Happens only on sensors kind of stuffs that never changes event base.
+3. `Merge` : check if the old data if it match with the new one update it with new one if not match keep as it is, known as `Upsert`
+
+Merge is increamental load, update first and then insert. <br/>
+So Merge is nothing but Update + Insert.
+
+Append is event based least used, only stuffs like sensor so something.
+
+Generally we use Overwrite and Merge(Upsert).
+
+For small data sources, go with overwrite. Merge/Upsert is risky becuz If you had a bad days, you didn't load the data correctly if you have small source system and you can overwrite. But if you have a big sources system, Overwrite takes long time that's why we have to do Merge/Upsert and for this we have to dependent on primary keys and stuffs like that.
+
+So Merge/Upsert improve the performance, where it check first to update if data exists if not exists then insert. So only few rows is going to be changed.
+
+But anyway we don't have to worry about the source system bcuz you're going to get history of delta tables bcuz delta files already saving the parquet files with the log and metadata files. 
+
+So if something went wrong with data we get the data back from history and do the operation again. This happens a lot in company projects.
+
+<img width="350" height="250" alt="image" src="https://github.com/user-attachments/assets/5fe190d1-7377-4a86-95b5-68a0aabb3ee0" />
+<br/>
+
 
 #
 </details>
@@ -662,6 +1058,122 @@ Keeps business logic separate from raw data, improves performance and clarity
 #
 </details>
 <!------------- Medallion Architecture (Data Lakehouse) ------------>
+
+## How Data Lakehouse is built in a company from scratch
+
+<details>
+  <summary> <b> Design, Code and Implementation </b> </summary>
+
+There is no one book or one way on how to build a Data Lakehouse. So, there is no standards, It depends on scenario and depends on situation and depends sources on the company itself, depends on data architect. 
+
+In the project, the first step as a Data Architect what you do is :
+
+**Step 1 :  Design a Data Lakehouse for your data Project** <br/>
+Make a diagram on how to design a data project. 
+You can't immediately jump and start scripting. 
+Have a design and then last thing is scripting otherwise It'll become messy.
+
+For Lakehouse we usually design 3 layers :
+1. Bronze layer (raw)
+2. Silver Layer (processing)
+3. Gold Layer (refined)
+
+`Bronze Layer` : <br/>
+When you're building Data Lakehouse, you need always a place where you put raw data as it is. <br/>
+It is very important to not do any transformation immediately. <br/>
+So just **Extract and Load**, So It's usually 1:1 copy of data **No Transformation** in Bronze Layer.
+
+Why so? 
+- of course this is a standard way. The reason to store it without any transformation is if something goes wrong in your Silver Layer or Gold Layer, instead of relying on sources of data, you can rely on your own Bronze Layer without worrying about data sources avaliability bcuz there might be possibilities that sources data is deleted/changed/modified in order to optimize their system and also that is manage by another team, you will have to raise the request for the data and so on. Imagine they deleted the data and don't have archive for it. 
+
+- You can't reverse the transformation on that huge source data so easily. So, It better to keep the raw data as it so that if any audit will have to happen team can easily do that. 
+
+<img width="350" height="250" alt="image" src="https://github.com/user-attachments/assets/a576a14e-4e6c-40fa-a208-2cdb1f2951db" />
+
+So basically you defined the rule. 
+
+
+Next step is to clean up the data. We can't keep data as it is.
+
+We don't do transformations all at once. We do it step-wise.
+
+**Tranformation** is of 2 types :
+1. Transformation that we do in order **to  Clean up the data**
+- e.g : trim for white spaces, changing the case of data types, replacing the nulls with new values 
+
+2. Transformation that we do in order **to apply Business Rules**
+- It is something that comes from business, where they if if customer having more than 100 orders then this customer is VIP. So those rules comes from the business, company. And Each company has its own business rules. 
+
+Since, We have 2 types of **Transformations**, we will not put everything in one place. <br/>
+So, we always try to split, the more we split, the more it is easier to manage. But of course you have to have a balance.  <br/>
+You can't have n numbers of layers. This is crazy that's not what a good Data Architect does. So Maximum 3 layers and it is standard Medallian Architecture Model. 
+
+`Silver Layer` : <br/>
+So in the Silver layer we do transformation only related to Data Cleansing. <br/>
+Like Clean Data, Standard data type changes, Replace Nulls, Trim spaces etc. <br/>
+So define the rules for it. 
+
+So We didn't allow to do Data Moduling in Silver Layer. The reason is we want to maintain the shape of data like the source system bcuz many times the Data Scientists or Data Analysts come and want to see and analyze the source data, they want not to break the model structure or add something new.  
+
+So the bigger the project the more people come and want to see the original data like it is from sources but in clean way that's we made another rule that there is no data modelling in Silver Layer.
+
+
+<img width="350" height="250" alt="image" src="https://github.com/user-attachments/assets/f8290b11-c94d-4cff-b3c1-890a8c518b60" />
+
+<br/>
+
+In the next step, in Gold Layer, which is a business layer, here you're allowed to apply those business rules.
+
+Here in Gold Layer you're allow to change the shape of data, you can do data modelling and break the old one and creat new one. <br/>
+Introduce star schema, Aggregations do whatever is required, prepare the data as final user can use it.
+
+<img width="350" height="250" alt="image" src="https://github.com/user-attachments/assets/3f962643-a384-49bc-8c76-03e9022384d8" />
+
+
+<br/>
+
+You can give the access point for your Data Lakehouse is Silver and Gold. 
+
+There are many use cases of it. As a Data Engineer, you're not a data owner but you're advisor for data bcuz Data Owner are usually from the business. So As Data Engineer you're the **Data Product Owner**. So, if someone come and ask you for the data, you always try to push the gold product bcuz the're really prepared and ready. But if things didn't work for them they want something else then only you can allow or serve them the silver layer. 
+
+Now you have defined your rules what you're going to do what is allowed and what is not allowed, where to do what. You have already done your 50% job done. Usually this is done by Data Engineers, Senior Data Engineers or Data Architects. Data Architects mostly involved in designing and guiding the developers. By the way when you joined the project which is already in progress always ask about rules each layer. 
+
+**Step 2 :   How to build(implement) this idea of Data Lakehouse that we designed in real Project?** <br/>
+
+So, Now we're going to code(scripts). <br/>
+We will write script in `PySpark` or `Spark SQL` or `PySpark SQL` either of them for each layer Bronze, Silver and Gold seperately.
+
+We write the scripts(codes) in Notebooks by using the Dataframe as we're using here Spark Technology for Distributed System and Parallel Processing. 
+
+In the Scripting, we're going to build storage, so we have to create storage folders seperately for each layer bronze, silver and gold.
+Usually we put everything in Unity Catalog. 
+
+What first notebooks scripts of Bronze Layer is going to do is read data from the source, create dataframes, do extraction and loading and write it to storage.  
+
+The next Notebooks scripts of Silver layer is going to do is read the data from Bronze layer, create dataframes, do transformation(Clean up) and write it to storage.
+
+Similarly the last Notebooks scripts of Gold layer is going to read the data from Silver layers, create dataframes, do transformation(Business) and write to storage.
+
+That's it! This is what we have to do as Data Engineer. 
+
+Once data lands in the final layer i.e. Gold Layer that is the final Data Product. Now you can go and say to Data Scientists, Data Analyst, Standard Business Users and Power Users, Hey Data is ready now you can go and consume it.
+
+Now of course, this is not a single time process, we do have to repeat it once we have new data, either it can be daily or weekly or monthly.
+So we can't run it manually everytime. That's not the professional way. So we have to automate it.
+
+In order to automate, we will build a data pipeline. This is something we also have to do in order to make an Orchestration, Orchestration means put everything in one place and if we want to run it just by one click, it will run and execute ech commands/scripts. So Data Pipeline is going to trigger the Bronze Notebooks and their command sequentially and then Silver one and at the end Gold one.  
+
+Now you can schedule your pipeline in the night shift to load the data.
+
+That's all fundametals of what a Data Engineer do?
+
+Now you job is to learn how to write script, how to build data pipeline.  
+
+<img width="350" height="250" alt="image" src="https://github.com/user-attachments/assets/b0aaad16-87e5-4c27-839e-113e556d93aa" />
+
+ #
+</details>
+
 
 ## 3.5 Project: Building the Bike Data Lakehouse
 <details>
