@@ -1174,6 +1174,606 @@ Now you job is to learn how to write script, how to build data pipeline.
  #
 </details>
 
+<details>
+  <summary> <b> Let's build it </b> </summary>
+
+<br/>
+
+Create a Repository on GitHub.
+- Put the code in one folder name it as "code"
+- Put datasets in another folder name it as "datasets"
+- If there are documents put it in another folder name it as "docs"
+- If there are images put it in another folder name it as "images"
+- Put the description of your Repository and Projects overview in a "README.md" file.
+
+Now Let's go to the Databricks
+- Open `Catalog` which is also known as `Unity Catalog` inside that `My organization` then `workspaces`
+
+- All aour works is going to be inside `Workspaces`. As as Data Engineer we have to keep eyes on different UI of Databricks like Workspace(which holds Notebooks/scripts/code), Catalog(Storage) and Compute(Server/Machine/Cluster)
+- Similar for Data Analyst, they have to keep eyes on SQL Section where they have SQL Editor, Queries, Dashboard, Genie AI/BI, Query History, SQL Warehouse etc etc.
+
+Inside the `Worksapce`, you can do a lot of things, create Notebook and write code/scripts. Save it and share it with and in teams you will have to collabarate and work on the same notebooks <br/>
+
+But since we're using free edition here we can't share that notebook code/script so instead of that, we will connect our GitHub to the Workspace so that we can save our work inside our GitHub Repo and share it with others who don't have databricks account or to keep the backup for ourself.  
+
+Go and `create` > `Git folder` > put your Git repository url `https://github.com/your_guthub_users_name/your_gitrepo_name` and name your folder in which your are going to save your work in hit repo `my_project_folder` > `Creare a Git folder`.
+
+Now you're inside your Git Repository, anything you do now It is going to be stored inside git repository, of course only after your commit.
+
+<img width="350" height="250" alt="image" src="https://github.com/user-attachments/assets/890ac89c-9098-4798-a1b1-b90bb5d12122" />
+
+
+Let's know the few important UI, in the left side we have `Home` and also `Workspace`
+
+- Inside `Home`, There you will see `your git repository folder` icon that means it is connected with your git.
+- Inside `Home`, There you will see `Shared with me`, this is for the stuffs that someone shared with you from your team.
+
+- Inside `Workspace`, There you will see `Repos` this repo is stored in your databricks oraganization workspace
+- Inside `Workspace`, There you will see `Shared` shared folders/notebooks in your oraganization workspace
+- Inside `Workspace`, There you will see `Users` user specific created files and folders in your oraganization workspace
+- Inside `Workspace`, There you will see `favorites` you can highligh you favorite notebooks or folders on which you work most
+- Inside `Workspace`, There you will see `Trash` deleted folders and notebooks will be there for few days after your deletion 
+
+<img width="350" height="250" alt="image" src="https://github.com/user-attachments/assets/ee7feacf-5ded-4451-9dbe-0dc5bff65616" />
+
+
+Since, Here we're going to work with GitHub Repo, so let's go inside our git repository and here we can work here on any Python Project like create Folders and python files or sql files or notebooks. 
+
+Let's create a new folder 'Bike_Lakehouse_2026' for a new Project. Now we can put all the codes for our project inside this folder.
+
+There are 2 options inside the folder which we created a) Either we can work with `Notebooks` or b) `Python Files`
+
+<details>
+  <summary> Working with Notebook and Visual Studio Code in databricks</summary>
+
+<br/>
+
+`Notebook` : 
+- It is like a advannced Editor where you can use databricks provided multiple languages like `Python`, `SQL`, `R`, `Scala`, `Markdown` etc 
+- We can write code step by step, like command wise otherwise It will be very hard to execute or run, understand, debug a huge long code. That's why we can run them step by step in different command cells.
+- Here, We can break the complexity of a big problem into smaller sections and we can see the result of each step.
+- You can run either run whole notebook once or each command one after another.
+
+<img width="350" height="250" alt="image" src="https://github.com/user-attachments/assets/ae4b3847-b108-4987-a350-ff4a85bb001b" />
+
+- This advanced Code Editor is an amazing way on how to work with big data in structured way.
+- This was made initially to work for Data Scientists, Now Data Analyst or Data Engineers and even Power Business users work with Notebooks.
+- This is one way on how to write code/script in databricks.
+- By the way notebooks is not only limited to databrick. We can use notebook editor in different platforms like Jupiter Notebook.
+
+But we still can write Python codes outside notebook not only in notebook.
+
+We have 2 types of file to write our code 
+1. Notebook
+2. Python 
+
+<img width="266" height="158" alt="image" src="https://github.com/user-attachments/assets/f32fea7a-e860-41bc-83b8-f4149bdc20bb" />
+
+
+<br/>
+
+> It is recommendation : Don't write a lot of Python codes, just use Notebooks when you're junior or new to databricks. Bcuz It is little bit complez for you at the begining.
+
+As a beginner you mostly use Notebooks.
+
+Moveing from Junior to Senior Data Engineer.
+
+- Work with Notebooks, once you're familiar with tools and platform start slowly switching to Python files bcuz It is more professional to manage your code and how to call things.  
+
+- You're ending up yourself writting both of them Notebooks as well as Python files. Like you will write Python files one for Functions, one for metadata etc etc and one notebook that orchestrate those python files. Of course, this is advanced.
+
+<img width="350" height="250" alt="image" src="https://github.com/user-attachments/assets/7625ea4a-68f3-48b2-8177-3e01132daeca" />
+
+<br/>
+
+Start Exploring how to use Databricks inside Visual Studio Code. These are advanced step done once you're comfortable and familiar with Databricks Notebooks. 
+
+Generally Data Engineers works with Visual Studio Code, It is more professional on how to write code. <br/>
+You can use Visual Studio Code to write code in databricks but you have to install an extenstion as well as things is going to run locally on your PC in the developement time. 
+
+It is more professional way to edit code, maitain the code, to work with git. 
+
+</details>
+
+Let's start with Notebooks in databricks.
+
+Once you created a notebook, what is very important is to check those 3 icons in left side `catalog`, where you see your structure of data like table, schema and stuffs then `Workspace` inside it you will see your notebooks where you can browse you folders and the 3rd one is `Table of Content` here you will see the notebook structure well organized. This is very important as our code base grows. 
+
+> Always before jumping directly to write code, always add header, documentation, description and then start writing code, while writing add comments for the steps. It helps you in long run.
+
+**Step 1.** <br/>
+First thing we have to do is build storages
+
+Go to `Catalog` and create completely brand new `Catalog` name it `dev_project` now this will be created inside your `My Organization` now you can put everything inside this brand new catalog `dev_project`
+
+Let's stick to the `my organization` > `Workspace`
+
+Now first thing we will do here is build schema for all those 3 layers. So we can write script for creating schema as well as by UI we can also create schema inside your workpace. <br/>
+Spark SQL
+```sql
+CREATE SCHEMA bronze
+CREATE SCHEMA silver
+CREATE SCHEMA gold
+```
+PySpark SQL
+```py
+spark.sql("CREATE SCHEMA schema_name")
+```
+or <br/>
+<img width="350" height="250" alt="image" src="https://github.com/user-attachments/assets/864dd8bd-3040-45d2-9039-5033042f4b57" />
+<br/>
+
+This is what we usually do, we put each layer in one schema and inside each schema we will create different tables, views.
+
+With that we have now three containers where we can put the data. 
+
+Now We put volume files(.csv) by uploading it to databricks and considered it as source system as we're using free edition. 
+
+<img width="350" height="250" alt="image" src="https://github.com/user-attachments/assets/5f7e89a2-d381-4f0c-b283-eb1d900344d3" />
+<br/>
+
+As volume is nothing but just folder so now we can put the files in this source system folder(volume) 
+
+We have datasets that's very close to that we have in projects. So we have 2 source systems (data source) and inside them we have different files which contains dirty data, raw data which are not prepared and need transformations to be consumed for analytics. In order to upload those files we can easily do that by just drag and drop. 
+
+<img width="350" height="75" alt="image" src="https://github.com/user-attachments/assets/711db7de-bedd-444b-99f3-47fefc99707b" />
+<img width="350" height="75" alt="image" src="https://github.com/user-attachments/assets/81074003-8276-48b0-a267-d0a937ad87ce" />
+<br/>
+<img width="350" height="250" alt="image" src="https://github.com/user-attachments/assets/da26c75b-839d-459c-b245-3986080f558c" />
+<br/>
+
+So now we have source data folder inside the bronze. Now we will take the data from this source as it is and load this inside the bronze. Once we loasd the data, we will be using delta tables bcuz storage of these layers is delta table we will not see CSV file which we have been uploading from the source. SO we have to convert everything to delta table. So this is the format that we have ti use.
+
+Let's start writing the code to extract and load the data from source_file to bronze.
+
+Go to `Workspace` > `Folder created for your project`  > `Create notebook and name it Bronze` > Start writing code here in the Bronze notebook
+
+Task : We're going to load the data from volume(which is source) and do nothing, no data transformation to it just to load it bronze.
+
+Notebook
+```md
+## Reading FROM CSV File
+```
+```py
+# Read the data from csv file from the source using dataframe.
+# Write it back to bronze in delta file format
+
+df = spark.read.option("header", "true")
+          .option("inferSchema", "true")
+          .csv("/volumes/workspace/bronze/source_crm/customer_info.csv")
+
+df.display() 
+```
+```md
+## Write it to Bronze Layer
+```
+```py
+df.write.mode("overwrite").saveAsTable("workspace.bronze.crm_cust_info")
+```
+```sql
+SELECT * FROM workspace.bronze.crm_cust_info;
+```
+
+With that, we have converted the volume csv file into a delta table. 
+
+same way we have to create delta tables from all the source files. And instead of doing that one by one we can do that by putting all files into a name into a dictionary/list and iterate over it through loop.
+```python
+src_file = ["customer_info", "product_info", "sales_info" ]
+for i in src_file :
+    df = spark.read.option("header", "true")
+         .option("inferSchema", "true")
+         .csv(f"""/volumes/workspace/bronze/source_crm/{i}.csv""")
+    
+    df.write.mode("overwrite").saveAsTable(f"""workspace.bronze.crm_{i}""")
+```
+
+This is not good to repeat your code in professional way. That's why we create metadata and configuration like create all the path of files in separate config file like `bronze_config.py`
+```py
+BASE_PATH = "/volumes/workspace/bronze/source_crm/raw_files"
+
+INGEST _CONFIG = [
+      # For CRM Source
+      {
+         "source" : "crm",
+         "path" : f"{BASE_PATH}/source_crm/customer_info.csv",
+         "table" : "crm_customer_info_raw"
+      },
+      {
+         "source" : "crm",
+         "path" : f"{BASE_PATH}/source_crm/product_info.csv",
+         "table" : "crm_product_info_raw"
+      },
+      {
+         "source" : "crm",
+         "path" : f"{BASE_PATH}/source_crm/sales_info.csv",
+         "table" : "crm_sales_info_raw"
+      }, 
+      # For CRM Source
+       {
+         "source" : "erp",
+         "path" : f"{BASE_PATH}/source_erp/sales_info.csv",
+         "table" : "crm_sales_info_raw"
+      }
+     
+]
+```
+In this python config file we're not doing any transformation, just defining the parameter of file for each file so that we have a configuration and then notebook we will do just a very simple iteration over it instead of hardcoding the file folder name. 
+
+Now we will just go to notebook file`bronze.ipynb` and read the configuration file `bronze_config.py` which  we created
+```md
+# initialization
+```
+```py
+From bronze_config import INGESTION_CONFIG
+```
+```sql
+USE CATALOG workplace;
+USE SCHEMA bronze;
+```
+```md
+# Read file from CSV and Write it Bronze Table
+```
+```py
+for item in INGESTION_CONFIG:
+    print(f"Ingesting {item['source']} -> bronze.{item['table']}")
+
+    df = (
+        spark.read
+             .option("header", "true")
+             .option("inferSchema", "true")
+             .csv(item["path")
+    )
+    (
+     df.write
+       .mode("overwrite")
+       .option("mergeSchema", "true")
+       .format("delta")
+       .saveAsTable(f"bronze.{item['table']}")
+    )
+```
+With this simple for loop on our config file, we're not repeating 100 times of creating the files name and file path, schema name and all of the stuffs.
+This is professional way bcuz suppose we have to change the mode from overwrite to append if we have 100 tables we had to change 100 times but we have a simple loop which read from the just in one place all set. If new file will come in source we will add it to our config file. 
+
+
+We're done with Bronze Layer, now we move to Silver Layer.
+
+Silver layer is all about reading from the Bronze and do transformation (to clean up, standard stuffs like data type changes, replace nulls with 0 etc etc) and write it back to silver.
+
+So for this Silver layer we will create a new notebook, name it as Silver `Silver.ipynb`. <br/>
+Again we have already creates the Schema inside our catalog for Silver with the name silver
+
+Here we will start preparing first table from the bronze. 
+```md
+## init step, means initial steps
+```
+In the first command of notebook import those libraries modules and functions in order tr use it during data transformation
+```py
+import pyspark.sql.functions F
+from pyspark.sql.types import StringType
+from pyspark.sql.functions import trim, col
+```
+
+```md
+# Reading From Bronze Table
+
+## Data Transformation
+
+## Write into Silver Table
+```
+This time It will be easier bcuz we're reading from the from bronze delta table, not reading csv files and stuffs from sources.
+```py
+df = spark.table("workspace.bronze.crm_customer_info");
+
+# now the data is inside the dataframe df
+```
+In order to do transformation we have to explore the data like what are the issues inside the data
+```py
+df.display();
+# rename column a, b, c
+# normalization of marital status
+# TRIM the trailing and leading spaces from customer_name column
+# Replace null with 0 in order_id
+# Change the datatype of cust_id col from string to int
+```
+Here columns name are not friendly, so if required rename the columns, table name , columns data types,trim white spaces, upper_case, lower case mismatch, make normalization for , with the abbriated values create full values, replace nulls etc  
+
+We make rules to trim the spaces in all string values to make sure we always trim whether space or not.
+```py
+# in the first command of notebook import those libraries modules and functions in order tr use it during data transformation
+import pyspark.sql.functions F
+from pyspark.sql.types import StringType
+from pyspark.sql.functions import trim, col
+
+## If column datatype is string then trim apply trim on top of all columns having string datatype
+for field in df.schema.fields:
+    if isInstance(field.dataType, StringType):
+           df - df.withColumnRenamed(field.name, field.name.trim(col(field.name)) )
+
+# with this we make sure all the string values are trimmed and removed the leading a trailing spaces
+```
+```py
+df.display();
+```
+```md
+## Normalization
+```
+```py
+df = (
+      df
+        .withColumn(
+                   "marital_status",
+                    F.when(F.upper(F.col("marital_status")) == "S", "Single")
+                     .when(F.upper(F.col("marital_status")) == "M", "Married")
+                     .otherwise("N/A")
+       )
+       .withColumn(
+                 "gender",
+                 F.when(F.upper(F.col("gender")) == "F", "Female")
+                 .when(F.upper(F.col("gender")) == "M", "Male")
+                 .otherwise("N/A") 
+       )
+      .withColumn(
+                 "sales_price",
+                 F.when(
+                         ( col("sales_price").isNull()) | (col("sales_price") <= 0),
+                           F.when(
+                              col("sales_qty") != 0,
+                              col("sales_sales") / col("sales_qty")
+                           ).otherwise(None)
+                 ).otherwise(col("sales_price")) 
+       )
+)
+
+# We can do this whole thing using SQL through Spark SQL or PySpark SQL 
+```
+```py
+df.display();
+```
+
+```md
+## Renaming columns
+```
+Generally we do define these kind of metadata transformation using dictionary. It is easy way to do the stuffs for large number of columns.
+```py
+# we can rename columns one by one that's not the professional way
+# but it's better to do all columns renaming at once
+# Put all the columns in a dictionary and define the column names and then do renaming at once
+
+RENAME_MAP = {
+    "cust_id" : "customer_id",
+    "cust_key" : "customer_key",
+    "cust_firstname" : "first_name",
+    "cust_lastname" : "last_name",
+    "cust_marital_status" : "marital_status",
+    "cust_gender" : "gender",
+    "cust_create_date" : "created_date"
+}
+
+for old_name, new_name in RENAME_MAP.items():
+        df = df.withColumnRenamed(old_name, new_name);
+
+df.display()
+```
+
+With that we have done 3 transformation in the dataframe.
+
+```md
+## Write into Silver Table
+```
+```py
+df.write
+  .mode("overwrite")
+  .format("delta")
+  .saveAsTable("workspace.silver.crm_customers")
+```
+```sql
+SELECT * FROM silver.crm_customers;
+```
+<img width="350" height="250" alt="image" src="https://github.com/user-attachments/assets/42196b7d-d622-41ab-8ae3-4dd28d702613" />
+<br/>
+<img width="350" height="250" alt="image" src="https://github.com/user-attachments/assets/dfcbead0-5881-49ca-a69b-715bfe491890" />
+
+<br/>
+
+Whatever we get from doesn't mean we're going to process everything until the gold, we process only the tables that we need it depends on  the project team. Suppose we have 1000 tables from source, and we have 10 data engineers, so in silver we will have 500 tables and at the gold layer after joining and stuffs we will have 50 tables prepared ready as Data Product.
+
+Next step for Gold Layer, similarly what we have done previously do here take the data from silver, do transformation(Businedd logic) and right it to gold layer.
+
+Create a seperate notebook for Gold layer name it as `gold.ipynb`, we have already created the Gold Schema.
+
+The Gold layer from coding perspective easier compare to silver or bronze. But It has one complication that you have to understand how to do the Business transformations(applying filters, and business logics) and how to do data moduling(Joining tables, Merging) bcuz in Silver layer we didn't change the model data was in one table, we did transformation(data cleaning) and write it back in one single table. 
+
+But in Gold layer, since it is a business model, here we have to introduce a new model. So, Here complexity is all about Data Modulling.
+
+There are different ways on how to module data. 
+1. Star Schema : A central table Fact, and around it different dimension tables.
+<br/>
+<img width="350" height="250" alt="image" src="https://github.com/user-attachments/assets/cabb66bd-c42a-4d81-ad18-d1b961a60459" />
+
+<br/>
+So, You have to decide how to module your data inside the Gold Layer. <br/>
+Star Schema is very perfect for Business Intelligence and PowerBI. So always build dimensional table. 
+
+2. Flat Table Schema : Make a very huge table and put all those information that is needed for Analysis. <br/>
+There is no need to joins multiple tables in order to get the data. <br/>
+This is worst way and lazy people do this and It takes down the performance to the table as well. <br/>
+As a Data Engineer you have to do proper Data Modulling and build dimensions and fact table in order to make things easier and professional way. It will be easier to do a lot of operations in PowerBI world like Aggregations, Slicing, Filtering on the each dimension and stuff like that. 
+
+You have to decide, How to present the data? <br/>
+If you decided to use Star Schema, you have to commit on that. Start Modulling the data and then sfter start building the Gold Layer. <br/>
+If you decided to go with flat tables in smaller projects then just make flat tables which contains all the data in one single table.  <br/>
+May be you have to decide to use both Star Schema as well as Flat Schema then define your rules and star building your Gold Layer. 
+
+So the Structure of Gold Notebook looks like below
+```md
+# Init mean Initial Steps
+
+## Read From Silver Table/Tables
+
+## Do Business Transformations and Data Modelling
+
+## Write it to Gold Table
+```
+
+Now in the Gold Layer, we must not do Triming or Casting of datatype, Renaming Columns etc etc. 
+This happen a lot that data is still dirty in Silver layer, so instead of transforming (clean up) in Gold Layer, Do data clean up in Silver layer itself bcuz this is what we defined in the rule book for what data lakehouse.
+
+```py
+import pyspark.sql.functions F
+import pyspark.sql.window import window
+```
+Let's do business data transformation. <br/>
+Generally we discuss in the Project Team while doing Business Data Tramsformations that why do we always choose SQL over here in Gold Layer for business transformation. There is a reason to it. <br/>
+Some people want to work with PySpark and some people want to work in SQL. <br/>
+But we prefer always use SQL in Gold Layer is bcuz Logic always comes here from Business and showing the code of PySpark to Business Users, no one is going to understand it. Here comes struggle as Data Engineer, Here in Gold layer a lot of people are involved like Data Engineers, Data Analyst, Business Users, Data Scientists, Business Stakeholder and Clients, Data Architect, Manager and sometime other teams as well. 
+
+It's hard and challenging bcuz 100s of table, How the hell we understand those tables as Data Engineer?
+
+As Project Lead has a lot of struggle, the department and company push on the Project Lead. 
+
+Things scale, Data Souces increase, More Data, More Data Engineers, More Data Analysts, More data products, More consumers!
+
+It takes time to understand and learn those 100s of tables. 
+
+With time, we're forced to do Optimization so we learned there though hard way but have to learn. Like working a lot of making the perfect metadata like config files and our main job is all about for loop, looping through the metadata. Generally Code base of a data project is not too big. We have a lot of automations that we do.
+
+We always describe the data first like metadata then write the code. Like what is the what is path, what is the target. and then iterate through all the tables and columns which we prepare and mapped in our config file. 
+
+```py
+query = """
+SELECT
+      ROW_NUMBER() OVER( ORDER BY ci.customer_id) AS customer_key,
+      ci.customer_id,
+      ci.customer_number,
+      ci.first_name,
+      ci.last_name,
+      ci.marital_status,
+      la.country,
+      CASE
+          WHEN ci.gender <> 'N/A' THEN ci.gender
+          ELSE COALESCE(ci.gender, 'N/A')
+      END AS gender,
+      ca.birth_date AS birthDate,
+      ca.created_date AS create_Date
+FROM silver.crm_customer_info ci
+LEFT JOIN silver.erp_customer_az12 ca
+  ON ci.customer_num = ca.customer_id
+LEFT JOIN silver.erp_location_a101 la
+  ON ci.customer_num = ca.company_id
+"""
+
+df = spark.sql(query);
+
+df.display();
+```
+```py
+df.write
+  .mode("overwrite")
+  .option("mergeSchema")
+  .format("delta")
+  .saveAsTable("gold.dim_customers")
+```
+
+Here in Gold layer we merge different layer and put in one table so we are basically merging the tables or building the dimension from multiple sources table. 
+
+Now our data product is ready, now we can inform the data consumers to consume our data which is of highest quality, now they don't have to work with those raw files(csv files) which are in the source. So Data Analyst, Business Users, Data Scientists will consume it in order to do their job. 
+
+```sql
+SELECT * FROM gold.dim_customers;
+```
+In the background, we used three different files in order to make this final products which contains the required and most important columns.
+
+We speed up the Analytical process by provoding the clean data. 
+
+Now What is next step.
+
+
+
+Of course, next day we will get new data, so again we have to repeat the process of running the same notebooks and scripts manually. 
+
+> Note : For backup sometime we do archive the source data. By the delta file provide the time travel so no need to worry about that.
+
+So to run all the notebook manually this is what we don't do manually. We build a data pipeline in order to automate our work.
+
+Creating data pipeline is very simple in Databricks.
+
+We orchestrated our all notebooks which contains scripts/code.
+
+There is a very famous tool that do the orchestration, It's called **Azure Data Factory**
+
+A lot of companies hires Data Engineers to build to build their Orchestraction using ADF. This is not neccessary anymore, bcuz since 2025 Databricks provide a new tool something called as **Jobs** (earlier workflow).
+
+So, now we can do Orchestration as well inside the databricks using Jobs, we don't have to go outside and use ADF. 
+
+Earlier we used ADF to trigger those notebooks and to build the pipeline. But we don't need that anymore. Now we can use something called Jobs in databricks this is the tool to build the pipeline. 
+
+It's very simple : <br/>
+Go to the `Jobs and pipelines` > `Create` > `Job` > `Notebook`  > Configure the Notebooks Path and server stuffs `Create task` > `Run now` of course we also don't want to run the job manually everytime, so we can schedule a trigger to the job > `Add trigger`
+- you can say I want to run a notebook, name the task, select the notebook which you want to run from where it is stored in databricks project folder> Bike_Lakehouse > workspace > bronze.
+
+- There are configurations as well in order to configure the server and stuffs.
+- For time being keep everything as default and create the task
+
+This is the first step bronze layer, similar way create another task for Silver and Gold layers notebooks as well.
+
+Of course, we can add SQL file, Python file and stuffs but usually all our code will be inside notebook, so we will create tasks using notebooks that run the whole things bcuz even we write our code/script at the end we're going to put everything in the notebook. So there is no need to run any files here in task. 
+
+<img width="206" height="132" alt="image" src="https://github.com/user-attachments/assets/b702a261-0523-4db4-9ac9-bb9231e4cef1" />
+
+<br/>
+
+So again a new task in the same job, for silver which will run only after bronze and after that another task which will run only after silver.
+So we have a job and inside it 3 tasks, one task for each layer.
+
+instead of running each notebook, we can run the whole notebooks in a job one after other. 
+
+<br/>
+<img width="500" height="350" alt="image" src="https://github.com/user-attachments/assets/8c752a0b-1bb2-4440-8130-cb87cd81cc7e" />
+<br/>
+<img width="500" height="350" alt="image" src="https://github.com/user-attachments/assets/5bcf3464-b950-4b82-b6a3-53cb6d10087c" />
+<br/>
+<img width="500" height="350" alt="image" src="https://github.com/user-attachments/assets/c15d075c-d233-4b9e-9fdc-9af7392cd477" />
+<br/>
+<img width="500" height="350" alt="image" src="https://github.com/user-attachments/assets/2b89caae-845b-405a-9ca2-02d808cbb481" />
+<br/>
+<img width="500" height="350" alt="image" src="https://github.com/user-attachments/assets/2884b110-d9b9-44b5-bdfb-e3299aed19b9" />
+<br/>
+<img width="500" height="350" alt="image" src="https://github.com/user-attachments/assets/7638da26-a336-47dc-9f83-f8ab06e19d14" />
+<br/>
+<img width="500" height="350" alt="image" src="https://github.com/user-attachments/assets/a9f6e6ad-2ee4-45b4-8773-fa230596d412" />
+<br/>
+<img width="500" height="350" alt="image" src="https://github.com/user-attachments/assets/f59cb86d-a35c-46c4-8bee-6db1cba2f9f4" />
+<br/>
+<img width="500" height="350" alt="image" src="https://github.com/user-attachments/assets/93b6110a-6c53-4e9f-9bfc-f005418de1ed" />
+<br/>
+
+Similar to ADF, Here in jobs also, we can monitor the data pipeline, which notebook which command is running any success or failure.
+Generally Bronze notebook tooks longer time bcuz it's not bcuz loading the csv file or other files, it's bcuz server started here only. Databricks don't have infrastrucure, they don't have Servers, CPUs, RAMs. They use the cloud services of Azure, AWS, GCP. So, when databricks jobs triggered it first server starts which takes few time then only after server start, notebooks will start executing that's why silver and gold notebooks take comparetively less time than bronze notebook. 
+
+
+So this is the standard fundamental things we do. To add on this we do add extra luxury stuffs where we add quality checks like after loading bronze we add more notebook to check stuffs e.g. everything is loaded correctly or do we have empty files.
+
+Of course, for monitoring purpose, we have a section **Data Engineers** from there you can monitor the pipeline.
+
+<img width="500" height="350" alt="image" src="https://github.com/user-attachments/assets/84cdc930-dfc8-44c9-82d6-e0b03fe2a612" />
+
+So, Once we build everything, we have to operate it through monitoring the pipeline if it runs successfully and load the data correctly that's the ideal perfect day but when it fails we have to monitor the health of the pipeline and make it run correctly. 
+
+We add email notifications in the notebooks in order to send emails(success/failure) to the production teams so that if any failure comes they will get the update on mail don't have to monitor.  
+
+How to connect API from the source, like how to connect Kafka as data source.
+
+Improve you code base, add functions, optimize tables, add comments and description.
+
+So, in Workspace we connected our Github to write code, In Catalog, we stored our data and build all 3 layers and move the data from one layer to another
+and last step is data pipeline jobs. 
+
+
+
+
+#
+</details>
+
 
 ## 3.5 Project: Building the Bike Data Lakehouse
 <details>
@@ -1227,17 +1827,17 @@ which is important for building the right data engineering mindset.
 - [ ]  **Create a volume inside bronze schema** `raw_sources`
 - [ ]  Upload the 6 CSV files from engineering folder into the Bronze volume 
 
-<aside>
+
 
 > **Result:** Project is ready to start building Bronze, Silver, and Gold layers.
 
-</aside>
 
 #
 </details>
 
+
 <details>
-  <sumary> <b> Phase 2 - Building Bronze Layer </b> </sumary>
+  <summary> <b> Phase 2 - Building Bronze Layer </b> </summary>
 
 <br/>
 
@@ -1253,7 +1853,7 @@ which is important for building the right data engineering mindset.
 - [ ]  Run the whole notebook to see if everything works successfully.
 - [ ]  Commit & Push your changes to the GitHub repository
 
-<aside>
+
 
 **Bonus Advanced Task**
 
@@ -1261,19 +1861,16 @@ which is important for building the right data engineering mindset.
 
 - Create a dictionary to store file paths and table names
 - Loop through the dictionary to ingest all files
-</aside>
 
-<aside>
 
 > **Result**: All 6 raw source files are ingested into dedicated Bronze tables with no transformations applied.
 
-</aside>
 
 #
 </details>
 
 <details>
-  <sumary> <b> Phase 3 - Building Silver Layer </b> </sumary>
+  <summary> <b> Phase 3 - Building Silver Layer </b> </summary>
 
 <br/>
 
@@ -1309,7 +1906,7 @@ This is usually the most time consuming phase of the project and the fun part!
         - [ ]  Clone the notebook as a template for the next table
     - [ ]  Commit & Push your changes to the GitHub repository
 
-<aside>
+
 
 **Bonus Advanced Task**
 
@@ -1320,13 +1917,13 @@ This is usually the most time consuming phase of the project and the fun part!
 
 **Result:** Cleaner, scalable code and a strong step toward senior data engineering.
 
-</aside>
 
-<aside>
+
+
 
 > Result: All Bronze tables are transformed into analytics-ready Silver tables with validated data quality and standardized structure.
 
-</aside>
+
 
 #
 </details>
@@ -1486,3 +2083,16 @@ Strong foundations first, then continuous improvement.**
 </details>
 
 <!------------- Project: Building the Bike Data Lakehouse ------------>
+
+Data Engineering is mindset (Take the data, Transform it and do something about it) not the tools only, You can do projects using different tools and on platforms like [^1] [^2] [^3] [^4] [^5] [^6] [^7].
+
+> Don't be a guy who is expert in only one tool. <br/>
+> Be the guy who is expert in the process.
+
+[^1]: Databricks, Snowflake or Fabric
+[^2]: Talend.   
+[^3]: SQL Server code only using Stored Procedure    
+[^4]: Informatica
+[^5]: Synapse
+[^6]: Data Factory and Azure Services
+[^7]: May be a new tool comes in next that is way better than databricks and easier
