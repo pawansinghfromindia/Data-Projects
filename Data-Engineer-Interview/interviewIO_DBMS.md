@@ -1773,6 +1773,40 @@ If a schedule is conflict serializable, then it will be view serializable.
 <details>
   <summary> <b> Serializability in DBMS </b> </summary>
 
+<br/>
+
+Serializability is a property of concurrent transactions that ensures the final result is the same as if the transactions were executed one by one (serially).
+
+
+> - Even if transactions run together, the result should look like they ran one after another.
+> - This keeps the database correct and consistent.
+
+
+### 🔄 Why Serializability is needed ?
+
+When transactions run concurrently:
+
+**Dirty reads** ❌
+
+**Lost updates** ❌
+
+**Inconsistent data** ❌ 
+
+> **Serializability guarantees correctness despite concurrency**.
+
+### ⭐ Types of Serializability
+
+1. Conflict Serializability
+
+2. View Serializability
+
+
+**Note : 🔥 Conflicting operations, They conflict if : Same data item, Different transactions At least one is WRITE**
+
+```
+Conflict pairs  -> R–W, W–R, W–W,
+Non-conflicting -> R–R
+```
 
 #
 </details>
@@ -1780,6 +1814,66 @@ If a schedule is conflict serializable, then it will be view serializable.
 <!------------------------------------>
 <details>
   <summary> <b> Recoverability in DBMS </b> </summary>
+
+<br/>
+
+In the DBMS there are multiple transactions that are happening parallelly. <br/>
+Some of these transactions are dependent on each other while some are independent. 
+
+If one transaction fails in the dependent transactions, can we minimize its impact on other transactions as well? 
+
+**Recoverability** in DBMS is an area that deals with such kind of issues.
+
+
+
+### 🎯 Why Recoverability is needed
+
+Without recoverability:
+
+Dirty reads get committed ❌ 
+
+Cascading failures ❌ 
+
+Database becomes inconsistent ❌ 
+
+Hard to recover after crash ❌ 
+
+
+### 2 Cases of Recoverability
+
+1. Non-Recoverable Schedule (WRONG)
+```
+T1: W(X)
+T2: R(X)
+T2: COMMIT   ← ❌ commits first
+T1: ABORT
+```
+This is NOT recoverable
+
+2. Recoverable Schedule (CORRECT)
+```
+T1: W(X)
+T2: R(X)
+T1: COMMIT
+T2: COMMIT
+```
+
+
+### Types of Recoverable Schedules
+
+1. Recoverable Schedule : If T2 reads data from T1 , → T2 must commit AFTER T1 commits
+2. Cascading Rollback Schedule : Even if recoverable, may cause chain aborts Called cascading rollback
+3. Cascadeless Schedule : Transaction can read only committed data
+4. Strict Schedule : No transaction can read OR write until previous writer commits/aborts.
+
+
+### 🚀 Summary
+
+| Property    | Dirty Read | Cascading Rollback | Safety |
+| ----------- | ---------- | ------------------ | ------ |
+| Recoverable | Possible   | Possible           | Basic  |
+| Cascadeless | No         | No                 | Better |
+| Strict      | No         | No                 | Best   |
 
 
 #
@@ -1789,6 +1883,71 @@ If a schedule is conflict serializable, then it will be view serializable.
 <details>
   <summary> <b> Deadlock in DBMS </b> </summary>
 
+<br/>
+
+Deadlock in a DBMS is a problematic scenario where two or more transactions are stuck in an indefinite wait for each other to finish, yet neither relinquishes the necessary CPU and memory resources. 
+
+This impasse halts the system, as tasks remain uncompleted and perpetually waiting.
+
+```
+T1 locks resource A
+T2 locks resource B
+
+T1 holds A and waits for B
+T2 holds B and waits for A
+
+Both wait forever → Deadlock
+```
+
+<img width="500" height="350" alt="image" src="https://github.com/user-attachments/assets/ce98e55b-1d9f-4bd6-8cfd-9c15b2ee5d6f" />
+
+
+### 🎯 Necessary conditions of Deadlock (Coffman Conditions)
+
+There are 4 Coffman conditions out of which if one or more are true, then there might occur a deadlock in the system.
+
+1. **Mutual Exclusion**
+
+- [x] Resource cannot be shared. Only one transaction uses resource at a time
+
+2. **Hold and Wait**
+
+- [x] Transaction holds one resource and waits for another.
+
+3. **No Preemption**
+
+- [x] Resource cannot be forcibly taken away.
+
+4. **Circular Wait**
+
+- [x] Transactions form a cycle of waiting.
+
+
+### 🛑 Deadlock Handling Techniques
+
+**1. Deadlock Prevention** <br/>
+Break at least one Coffman condition. <br/>
+How ? : using methods like :
+- [x] Resource Ordersing
+- [ ] Preemption
+- [ ] No hold-and-wait policy
+
+**2. Deadlock Avoidance** <br/>
+System checks before granting lock.
+
+**3. Deadlock Detection & Recovery** (Most Used) <br/>
+
+Step 1: Detect <br/>
+Use Wait-For Graph
+- [ ] transaction
+- [ ] waiting
+Cycle → deadlock
+
+
+Step 2: Recovery <br/>
+- [ ] Abort one transaction
+- [ ] Rollback
+- [ ] Release locks
 
 #
 </details>
@@ -1796,6 +1955,81 @@ If a schedule is conflict serializable, then it will be view serializable.
 <!------------------------------------>
 <details>
   <summary> <b> Concurrency Control in DBMS </b> </summary>
+
+<br/>
+
+When several transactions execute concurrently without any rules and protocols, various problems arise that may harm the data integrity of several databases. These problems are known as **concurrency control problems**. 
+
+Therefore several rules are designed, to maintain consistency in the transactions while they are executing concurrently which are known as **concurrency control protocols**.
+
+
+### 🎯 What is concurrency control in DBMS?
+
+A transaction is a single reasonable unit of work that can retrieve or may change the data of a database. 
+
+Executing each transaction individually increases the waiting time for the other transactions and the overall execution also gets delayed. 
+
+Hence, to increase the throughput and to reduce the waiting time, transactions are executed concurrently.
+
+### 🎯 Concurrency Control Problems
+
+Several problems that arise when numerous transactions execute simultaneously in a random manner are referred to as Concurrency Control Problems.
+
+**Dirty Read Problem**
+
+**Unrepeatable Read Problem**
+
+**Phantom Read Problem**
+
+**Lost Update Problem**
+
+**Incorrect Summary Problem**
+
+### 🎯 Concurrency Control Protocols
+
+To avoid concurrency control problems and to maintain consistency and serializability during the execution of concurrent transactions some rules are made. These rules are known as **Concurrency Control Protocols**.
+
+1️⃣ **Lock-Based Protocols**
+
+- To attain consistency, isolation between the transactions is the most important tool. 
+
+- Isolation is achieved if we disable the transaction to perform a read/write operation. This is known as locking an operation in a transaction. 
+
+There are two kinds of locks used in Lock-based protocols
+- [x] Shared Lock(S)
+     - The locks which disable the write operations but allow read operations for any data in a transaction are known as shared locks.
+     - They are also known as read-only locks.
+     - They are represented by 'S'.
+
+- [x] Exclusive Lock(X)
+     - The locks which allow both the read and write operations for any data in a transaction are known as exclusive locks.
+     - This is a one-time use mode that can't be utilized on the exact data item twice.
+     -  They are represented by 'X'.
+
+2️⃣ **Time-based Protocols**
+
+According to this protocol, every transaction has a timestamp attached to it. 
+
+The timestamp is based on the time in which the transaction is entered into the system. 
+
+There is read and write timestamps associated with every transaction which consists of the time at which the latest read and write operations are performed respectively.
+
+3️⃣ **Validation Based Protocol**
+
+This protocol executes the transaction undergoing through the following three phases :
+
+**1. Read phase**
+
+
+**2. Validation phase**
+
+
+- [x] Validation Test
+    - [x] Finish(A) < Start(B)
+    - [x] Start(B) < Finish(A) < Validate(B) 
+
+**3. Write phase**
+
 
 
 #
@@ -1805,6 +2039,59 @@ If a schedule is conflict serializable, then it will be view serializable.
 <details>
   <summary> <b> Distributed Database System in DBMS </b> </summary>
 
+<br/>
+
+A database is a structured collection of information. 
+
+Databases can be broadly classified into two types, namely **Distributed databases** and **Centralized databases**.
+
+Distributed databases resolve various issues, such as **availability, fault tolerance, throughput, latency, scalability**, and many other problems that can arise from using **a single machine and a single database**.
+
+### 🌐 Distributed Database 
+
+Data is stored on many computers, but users feel it is one database.
+
+> A distributed database system consists of a single logical database that is physically spread across multiple sites connected by a network.
+
+1️⃣ **Sites (Nodes/Computes/Machines)** 
+- Physical locations where data is stored.
+- Examples : `Servers`, `Data centers`, `Cloud regions`
+
+
+2️⃣ **Communication Network**
+- Connects all sites/Nodes/Computes/Machines
+- Examples : `Internet`, `LAN/WAN`
+
+3️⃣ **Distributed DBMS (DDBMS)**
+- Software that manages the distributed database and makes it appear unified.
+
+
+### Data Distribution Methods
+
+📍 **1. Fragmentation** : Database is split into parts.
+   - [x] Horizontal fragmentation (rows split)
+   - [x] Vertical fragmentation (columns split)
+   - [x] Hybrid fragmentation
+
+📍 **2. Replication** : Copies of data stored at multiple sites/computes/nodes/machines.
+
+📍 **3. Allocation** : Decides where fragments are stored.  
+
+
+### 🚀 Advantages
+
+✅ High availability
+
+✅ Fault tolerance
+
+✅ Better performance (local access)
+
+✅ Scalability
+
+✅ Parallel processing
+
+✅ Geographic distribution
+
 
 #
 </details>
@@ -1813,6 +2100,77 @@ If a schedule is conflict serializable, then it will be view serializable.
 <details>
   <summary> <b> Query Processing in DBMS </b> </summary>
 
+<br/>
+
+Query processing is nothing but **How DBMS understands and runs your SQL query ?**
+
+When you write SQL, the DBMS does a lot of work behind the scenes.
+
+
+### 🚀 Phases of Query Processing
+
+**1️⃣ Parsing & Translation**
+
+- [x] What happens is **SQL syntax is checked** -> **Query is converted to internal form** -> **Relational algebra tree is created**
+
+- [x] As an output a Parse Tree / Query Tree is created internally by SQL Engine.
+
+
+**2️⃣ Query Optimization**
+
+- [x] What happens is DBMS(SQL Engine) chooses the best execution plan among many possible plans. Bcuz one query can be executed in many ways.
+
+- [x] Here, Optimizer decides : Which index to use, Join order, Join method (nested loop, hash, merge) and Access path
+
+- [x] As an output, goal is to achieve Minimum cost plan like choosing **Index Scan** over **Full Table Scan**
+
+**3️⃣ Query Evaluation / Execution**
+
+- [x] What happens is the chosen plan is actually executed.
+
+- [x] DBMS (SQL Engine) accesses disk -> performs joins and filters rows -> returns result
+
+- [x] As an output, Result table is presented as Final output to user
+
+
+So, Basically complete flow of Query Processing is :
+```
+User SQL Query
+   ↓
+Parser
+   ↓
+Query Optimizer
+   ↓
+Execution Engine
+   ↓
+Result
+```
+
+> **Query Processor** includes : Parser, Optimizer and Execution engine
+
+
+<img width="500" height="350" alt="image" src="https://github.com/user-attachments/assets/54907481-f1c5-4934-82a0-7c5dd290ad9c" />
+
+<img width="500" height="350" alt="image" src="https://github.com/user-attachments/assets/1686b9c7-2f6c-46ad-8d64-01b5ae1ed4ac" />
+
+<img width="500" height="350" alt="image" src="https://github.com/user-attachments/assets/89ba3b9c-97c9-48c4-a807-801a3c4904ca" />
+
+<br/>
+
+> - Syntactic analysis → checks grammar (structure) → Parse tree / Syntax tree
+> - Semantic analysis → checks meaning (logic) →   Annotated syntax tree / symbol table updates
+
+```cpp
+int a = ; // Compiler says: syntax error
+```
+
+```cpp
+int a;
+a = "hello"; // Syntax is correct But Type mismatch → semantic error
+
+x = 10; // x not declared → semantic error
+
+```
 
 #
 </details>
