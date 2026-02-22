@@ -1,6 +1,6 @@
 # Data and Data Literacy
 
-## What Data Team does and How Data Team works ?
+## What Data Team does ? 
 
 <details>
   <summary> <b> Data Team </b> </summary>
