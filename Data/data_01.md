@@ -14,9 +14,9 @@ Bridge between raw data and Real Business Decisions
 - What is the role of a data analysts in a data team ? <br/>
 In a company we have manager, stakeholders, project leads and their whole job is to make smart decisions by asking critical questions. <br/>
 
-`Q : Which region is underperforming ?` <br/>
-`Q : Why're profits down ?` <br/>
-`Q : Should we invest here ?` <br/>
+`Que : Which region is underperforming ?` <br/>
+`Que : Why're profits down ?` <br/>
+`Que : Should we invest here ?` <br/>
 
 Basically they have many challenges in company and they need quick and smart decisions. <br/>
 Without using data, they're just guessing, relying on opinions, gut feelings and outdated information left, right, top, down.
@@ -1123,7 +1123,7 @@ But what is important here is **to fit everything in one page/document**.
 - [x] MongoDB
 
 
-<img width="1188" height="647" alt="image" src="https://github.com/user-attachments/assets/79ebc37e-25d5-4568-9869-97cdead33adc" />
+<img width="600" height="500" alt="image" src="https://github.com/user-attachments/assets/79ebc37e-25d5-4568-9869-97cdead33adc" />
 
 
 ### SQL vs NoSQL
@@ -1135,7 +1135,7 @@ Based on all of those five database we can catagorize/group them in 2 types :
 2. NoSQL : `Column-based database`, `Key-value based database`, `Document database`, `Graph database`
 
 
-<img width="1102" height="659" alt="image" src="https://github.com/user-attachments/assets/50aa4778-4298-41cc-8f0e-a48a1b2ec09c" />
+<img width="500" height="350" alt="image" src="https://github.com/user-attachments/assets/50aa4778-4298-41cc-8f0e-a48a1b2ec09c" />
 
 
 #
@@ -1193,7 +1193,7 @@ Each `cell` stores specific data type.
 Data type is like what kind of data we're storing Number, Integer, decimal, Text, Char, Varchar, Date and Time.
 
 
-<img width="1189" height="652" alt="image" src="https://github.com/user-attachments/assets/3efa55b7-5b7d-4ab7-b107-7f3129fa93a8" />
+<img width="500" height="350" alt="image" src="https://github.com/user-attachments/assets/3efa55b7-5b7d-4ab7-b107-7f3129fa93a8" />
 
 
 #
@@ -1203,10 +1203,332 @@ Data type is like what kind of data we're storing Number, Integer, decimal, Text
 <details>
   <summary> <b> Types of SQL Commands </b> </summary>
 
+Let's say we have a database, this database is empty.
+
+First thing we do is to write anything in database, we create a brand new table, insert data into it, delete it, drop it ans others things we do  in the database using different commands.
+
+We have different Families of different commands.
+
+### DDL (Data Definition Language)
+
+`CREATE`
+
+`ALTER`
+
+`DROP`
+
+`TRUNCATE`
+
+`RENAME`
+
+### DML (Data Manipulation Language)
+
+`INSERT`
+
+`UPDATE`
+
+`DELETE`
+
+
+### DQL (Data Query Language)
+
+`SELECT`
+
+### DCL (Data Control Language)
+
+`GRANT`
+
+`REVOKE`
+
+
+### TCL (Transaction Control Language)
+
+`COMMIT`
+
+`SAVEPOINT`
+
+`ROLLBACK`
+
+
+<img width="500" height="350" alt="image" src="https://github.com/user-attachments/assets/205cc786-7cf7-4c5c-8e62-54cd66b3f36c" />
+
 
 #
 </details>
 
+
+<!------------------------------------>
+<details>
+  <summary> <b> Why to learn SQL ? </b> </summary>
+
+1. In order to interact with data in database
+
+2. High Demand of SQL Skills for any data related job.
+
+3. Industry Standards to use SQL
+
+
+<img width="500" height="350" alt="image" src="https://github.com/user-attachments/assets/77dbac6e-380e-4cf2-9266-9e4f6921cc88" />
+
+
+#
+</details>
+
+
+<!------------------------------------>
+<details>
+  <summary> <b> Summary of SQL, Database, DBMS </b> </summary>
+
+
+With that we have a clear understanding What is SQL, Why we need it?, What is database, DBMS, Server and DBMS Types, SQL Commands and How things are organizes in databases. 
+
+<img width="800" height="500" alt="image" src="https://github.com/user-attachments/assets/1744c78d-714f-4414-9828-c73f65789169" />
+
+
+#
+</details>
+
+## Python
+
+<!------------------------------------>
+<details>
+  <summary> <b> What is Python ? </b> </summary>
+
+### What is programming language 
+
+Imagine that you want to give your computer a task and you say - Hey Computer, Please calculate 5 + 5.
+
+
+<img width="350" height="250" alt="image" src="https://github.com/user-attachments/assets/a7cab605-dce0-4aa9-a131-693d2b1c1f53" />
+
+
+Computer will not understand what are you talking about? and nothing is going to happen.
+
+We can't use the natural human language in order to give tasks to computer/PC. Instead we have to give instructions to computer/PC in a language which computer understand it.
+
+Python
+```py
+print(5 + 5)
+```
+
+> **Program** : A set of instructions that is written in a language that computer understand.
+
+Not all languages are meant for everyone. Some are meant for people and others are made for machines.
+
+Natural Languages : `English`, `Hindi`, `Spanish`, `Japanese`, `Urdu`, `Arabi`
+
+Programming Lanuages 
+
+- High Level Languages : `C/C++`, `Java`, `Python`, `JavaScript`
+
+- Low Level Languages : `Assembly`, `C`, `RUST`, `GO`
+
+- Machine Languages :  Binary Languages `0s1s`
+
+This is how machine works, we have abstraction between Human and Machine in order to hide the complexity.
+
+
+<img width="800" height="500" alt="image" src="https://github.com/user-attachments/assets/79c4162e-5cc5-4a35-ad27-0c759d9b0d11" />
+
+
+#
+</details>
+
+
+<!------------------------------------>
+<details>
+  <summary> <b> How Python Works ? </b> </summary>
+
+Let's say you open a **Code Editor** like VSCode and start writing `Python` code inside a  file extension `.py`.
+
+Here, you're basically writing a source code.
+
+Once you run your code, the computer can't immediately execute your instructions bcuz it's high-level language(code). Computer need a lower level code.
+
+So What will happens is we have something called **Compiler/Interpreter** in Python. It will compile/interpret our python code and translate it into another code that is **byte code** with the extension `.pyc` i.e Python Compiled. This happens automatically, we will not even notice it.
+
+What happen here is the compiler/Interpreter of Python translates the high-level language Python Code to a low-level language byte code. It is really hard to understand byte code compared to Python code.
+
+Our Python code is not executed yet, Python Interpreter/Compiler just did translation.
+
+Before anything to be executed what happens is Python might link some **libraries**. It is like pre-written chunks of code that helps your code to do something specific like woking with files, handling data, printing on console and so on. Basically some predefine functions and classes are written already.
+
+Now Python has everything byte code, libraries and now python will run byte code using something called **Python Virtual Machine**. It is like a software that understand the byte code of python and take care of running it.
+
+Python virtual machine finally convert your instructions into Machine codes 0s 1s bcuz computer can only understand 0s 1s. Once it run, you will see the result whatever you program is designed to do.
+
+All those 3 steps (Compile, Translate and Execute) we called them **Python Interpreter**. It is like a toolbox that handles everything needed to run a python code.
+
+
+<img width="800" height="500" alt="image" src="https://github.com/user-attachments/assets/62377796-5d6e-4089-8bd3-3a588903c2c9" />
+
+
+#
+</details>
+
+
+<!------------------------------------>
+<details>
+  <summary> <b> Why Python ?</b> </summary>
+
+### Why to learn Python in the first place ?
+
+There are many languages out there in market then why millions of people choose to learn Python!
+
+1. Python is very powerful at the same time very simple.
+
+You can build things in less number of lines compared to other languages like Java.
+
+Java
+```java
+import java.io.*;
+
+public class Main{
+    public static void main(String[] args){
+        try {
+             BufferedReader reader = new BufferedReader(new FileReader("file.txt"));
+             String line;
+             while((line = reader.readLine()) != null){
+                  System.out.println(line);
+             }
+             reader.close();
+        }
+        catch(IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+}
+```
+Python
+```py
+with open("file.txt") as f :
+     for line in f:
+         print(line)
+```
+
+2. Python is used literally everywhere.
+
+We can use it to build everything.
+
+e.g. : to build Websites, to build Applocation, to automate tasks, to work with data, to build games, to control robots. 
+
+In whatever direction you will go in tech, you will find python.
+
+3. Python has huge community.
+
+There are 1000s of developers and experts are there to help you by sharing the knowledge across the platform.
+
+This type of community makes language alive.
+
+4. When it comes to AI, Python is leading the way.
+
+Almost everything you hear about like ChatGPT, Image Generation, Self-driving car models. It's build with Python. bcuz Python has an incredible ecosystem for AI/ML.
+
+Because of these reason Python is one of the most in-demand popular programming language in the worls right now. If you're interested in future Python is the right language.
+
+Python is easy to learn, has incredible use cases, shaping the future with AI, has huge community support!
+
+<img width="1188" height="675" alt="image" src="https://github.com/user-attachments/assets/b98b0d76-448c-429b-9e17-e5e3e32edd2c" />
+
+
+#
+</details>
+
+<!------------------------------------>
+<details>
+  <summary> <b> Python Roadmap </b> </summary>
+
+Learning Python is like a journey, and every journey needs a roadmap.
+
+Everyone starts from same place Student, Developers, Experts, Instructor, Data Engineer, Web, AI, Gaming Developer.
+
+**Beginner Level**
+
+Start as beginner by How to write a simple code, understand variables, datatypes, control flow in code, functions(organizing your code into small re-usable blocks)
+
+**Intermediate Level**
+
+How to handle errors and Exceptions, structure your code using OOP, how to split your project into modules, how to work with files etc.
+
+Making your code more professional like a real developer.
+
+**Advanced Level**
+
+Start learning advanced techniques like outside of our code in order to connect ourself with APIs in order to grab data from the internet, how to test your code, how to scrap website to collect the data automatically.
+
+At this level you start doing real project and solving real problems.
+
+**What next**
+
+We can't keep learning everything. It's impossible.
+
+Now make sure about the direction/path which you want to follow.
+
+Choose/Pick the path/direction that match your interest and career goals.
+- Data Engineering : pySpark, ETL, Automation with Python
+- Data Science : Panda, NumPy, Plotly
+- AI and ML : PyTorch, Transformer, TensorFlow
+- Web Development : Flask, django, Requests
+
+
+
+<img width="800" height="500" alt="image" src="https://github.com/user-attachments/assets/5af8d097-8188-4d3a-ae93-8e6a7f6b2450" />
+
+
+#
+</details>
+
+
+## GitHub
+<!------------------------------------>
+<details>
+  <summary> <b> What is GitHub ? </b> </summary>
+
+If you're new to Git, Don't worry! It is simpler than it sounds.
+
+It is all about a safe place where you can put your codes that you're developing and you will have possibility to track eeverything happenes to the code. As well as you can use it in order to collaborate with your team and if something goes wrong you can always rollback.
+
+
+<img width="800" height="500" alt="image" src="https://github.com/user-attachments/assets/8309a905-dafe-4f53-85b2-fde59dd58a50" />
+
+
+#
+</details>
+
+
+## Data Architecture
+<!------------------------------------>
+<details>
+  <summary> <b> What is Data Architecture ? </b> </summary>
+
+Designing the data architecture is exactly like building a house.
+
+Before construction start, an architect design a plan, a blueprint for the house.
+
+How many rooms will be there, how the rooms will be connected, how to make house functional, safe, secure, wonderful, scalable.
+
+Without blueprint/plan builders might create something unstable, in-efficient, un-livable.
+
+Same goes for Data Projects.
+
+A Data Architect is like a house architect. They design how your data will flow, integrate and be accessible. So as data architect we have to make sure that Data Warehouse is not only functioning well but also scalable, easy to maintain, safe and secure.
+
+So the role of Data Architect is to brainstorming and designing the architecture of data warehouse.
+
+
+<img width="500" height="350" alt="image" src="https://github.com/user-attachments/assets/70808a9f-c68b-4178-8ec6-e851ac894901" />
+
+
+### Different approaches in order to design a Data Architecture
+
+First step of building a data architecture is to make a very important decision to choose between 4 major types :
+
+1. To build a data warehouse. It is very suitable if you have 
+
+
+#
+</details>
 
 <!------------------------------------>
 <details>
