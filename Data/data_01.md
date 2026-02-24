@@ -1524,7 +1524,88 @@ So the role of Data Architect is to brainstorming and designing the architecture
 
 First step of building a data architecture is to make a very important decision to choose between 4 major types :
 
-1. To build a data warehouse. It is very suitable if you have 
+### Approach #0. To build a `Database`.
+
+<details>
+  
+<img width="500" height="350" alt="image" src="https://github.com/user-attachments/assets/00a3bdc6-d83e-43d8-a298-c60e91382735" />
+
+</details>
+
+### **Approach #1. To build a `Data warehouse`**.
+
+- It is very suitable if you have **only Structured data** and your business want **to build a solid foundation for Reporting and Business Intelligence**
+
+<details>
+
+<img width="500" height="350" alt="image" src="https://github.com/user-attachments/assets/e606dcb1-7b5b-4847-9724-db4c04a02931" />
+
+</details>
+
+### **Approach #2 To build a `Data Lake`**.
+
+- Data Lake is way more flexible than a Data Warehouse where you can store **not only structured data but also semi and un-structured data**.
+
+- We usually use this approach if we have mix type of data. Like Database tables, logs, images, videos and your business want to **focus not only on Reporting but also Advanced Analytics or Machine Learning**.
+
+- It is not that organized like Data Warehouse.
+
+- If Data Lake is too much un-organized, It can turn into **Data Swamp**. This is where we need next approach
+
+> A data swamp is a poorly managed data lake that has become disorganized, unusable, and inaccessible due to lack of governance, metadata, and data quality controls.
+
+<details>
+
+<img width="500" height="350" alt="image" src="https://github.com/user-attachments/assets/10489860-ff14-4faa-b67d-c8ceb3129cda" />
+
+</details>
+
+### **Approach #3 To build a `Data Lakehouse`**
+
+- Data Lakehouse is mix between Data Warehouse and Data Lake.
+
+- You get the flexibility of having structured, sem-structured and Un-structured data from the data lake but you still want to structured and organized your data like we do in the Data Warehouse.
+
+- This is very modern way on how to build Data Architecture, this is favorite way of building **Data Management System** for most of the Data Architect.
+
+The last and very recent approach is to build a Data Mesh
+
+<details>
+
+<img width="500" height="350" alt="image" src="https://github.com/user-attachments/assets/a20ab414-6566-4fdd-a89c-30cc5346981d" />
+
+</details>
+
+### **Approach #4 To build a `Data Mesh`**
+
+- This is little bit different.
+
+- Instead of having centralized Data Management System, make it de-centralized.
+
+- The idea of **Data Mesh is to make Data Management System de-centralized**. Bcuz we can't have one centralized Data Management System because if it is centralized then it means so bottlenecks. 
+
+So, Instead We **have multiple departments, multiple domains** where each of them is building a data product and sharing it with others.
+
+<details>
+  
+<img width="500" height="350" alt="image" src="https://github.com/user-attachments/assets/580b4637-e689-4fde-ac64-0af98a975508" />
+
+</details>
+
+> Pick one of those aprroaches in your project based on requirement.
+
+
+<img width="500" height="350" alt="image" src="https://github.com/user-attachments/assets/78920182-43e4-4470-8b49-259f104fcf5a" />
+
+### Summary
+
+| Feature    | Database   | Warehouse  | Lake  | Lakehouse | Mesh           |
+| ---------- | ---------- | ---------- | ----- | --------- | -------------- |
+| Workload   | OLTP       | OLAP       | Mixed | Mixed     | Organizational |
+| Schema     | Write      | Write      | Read  | Hybrid    | Domain-driven  |
+| Data type  | Structured | Structured | All   | All       | All            |
+| Real-time  | Yes        | Limited    | Yes   | Yes       | Depends        |
+| Governance | Strong     | Strong     | Weak  | Strong    | Federated      |
 
 
 #
@@ -1532,7 +1613,649 @@ First step of building a data architecture is to make a very important decision 
 
 <!------------------------------------>
 <details>
-  <summary> <b> </b> </summary>
+  <summary> <b> How to build a Data Warehouse ? </b> </summary>
+
+<br/>
+
+There are 4 different approaches on how to build a Data Warehouse :
+
+### Aprroach #1. 🏗️ Top-Down Approach (Inmon Method)
+
+We have a data sources, 
+
+the first layer we start with **Staging** where the raw data is landing.
+
+the next layer we organize our data in something called **Enterprize Data Warehouse** where we module the data using the 3NF(How to structure and normalize tables). Basically we're building a new data model from multiple sources.
+
+the third layer is called **Data Marts** where we take small subset of data warehouse and design it in a way that is ready to be consumed from reporting. It focus on only one topic like either customers or sales or products.
+
+After that we connect our BI tools like PowerBI/tableau to the Data Marts.
+
+<img width="800" height="173" alt="image" src="https://github.com/user-attachments/assets/3425b8b8-ac65-4f5a-b61a-814299cc0164" />
+
+<br/>
+
+With that we have 3 layers to prepare the data before reporting.
+
+### Aprroach #2. 🧩 Bottom-Up Approach (Kimball Method)
+
+According to Kimball, building the **Enterprize Data Warehouse(EDW)** is wasting of time. So what we can do is jumpt immediately from the **stage layer** to the final **data marts**. Bcuz building **Enterprize Data Warehouse(EDW)** is a big struggle and waste of a lot of time.
+
+To focus on only building the data marts quickly as possible. So, It is faster approach than inmon.
+
+But with the data, you might get Chaos in the data marts bcuz focus is not on the big picture rather you are focusing on short terms where you might repeating the same transformations and integrations in different data marts.
+
+So, There is a **trade-off between the Speed and Consistent Data Warehouse**
+
+<img width="800" height="312" alt="image" src="https://github.com/user-attachments/assets/fbe45c6d-8f28-42e2-9161-b8027d5835ab" />
+
+
+
+### Aprroach #3. ⚖️ Data Vault Approach
+
+We still have Staging and Data Marts but it says we still need a **central data warehouse** in the middle but in this middle layer we will have to bring more standards and rules.
+
+So, We split this middle layer(Enterprize Data Warehouse) into 2 layers :
+1. Raw Vaults
+2. Business Vaults
+
+In the raw vault, we will have original data but in the business vault we will have all the business rules and transformations that prepares the data for data marts.
+
+So Data Vault is very similar to Inmon(Top-down approach) but it brings more standards and rules to Middle(Enterprize Data Warehouse) layer.
+
+<img width="800" height="451" alt="image" src="https://github.com/user-attachments/assets/b7f4289f-812e-4d7d-83de-80736dc68ff9" />
+
+
+### Aprroach #4. 🚀 Medallion Architecture
+
+It is very easy to understand and to build. It says we have to build 3 layers Bronze, Silver and Gold.
+
+The **Bronze Layer** is very similar to Stage layer bcuz we have to understand that Having the original data as it is helps a lot Traceability and finding issues.
+
+Next we have **Silver Layer** It is where we do transformations like Data Cleansing, Data Enhancement and Data Preparation but we don't apply yet any business rules and logic.
+
+The last is **Gold Layer**, It is very similar to the Data Marts but here unlike Data Marts we build different types of Objects not only for Reporting but as well for Machine Learning for AI and many different purposes. Here we have business ready objects that we share as a data products.
+
+<img width="800" height="613" alt="image" src="https://github.com/user-attachments/assets/61a453aa-c446-474a-bbf5-9c1ddc4d7780" />
+
+
+<br/>
+
+These are the 4 approches that we use in order to build Data Warehouse. As a Data Architect, you have to pick one of these when you start your projects.
+
+<img width="800" height="500" alt="image" src="https://github.com/user-attachments/assets/a44cb95c-cb3c-40f4-8dc6-176e9a797bb1" />
+
+
+#
+</details>
+
+## Data Warehouse
+<!------------------------------------>
+<details>
+  <summary> <b> What is Data Warehouse ? </b> </summary>
+
+- What is exactly a Data Warehouse ?
+- Why companies try to build such data data management system ?
+
+### Data Warehouse
+
+Father of Data Warehouse is **Bill Inmon**
+
+Bill Inmon, his Definition a Data Warehouse is:
+> "A **subject-oriented**, **integrated**, **time-variant**, and **non-volatile** collection of data in **support of management’s decision-making process**."
+
+> - **Subject-oriented** → organized around business subjects (sales, customer, finance)
+> - **Integrated** → data from multiple sources is unified
+> - **Time-variant** → stores historical data
+> - **Non-volatile** → data is read-heavy, not frequently updated and deleted
+
+
+#
+</details>
+
+<!------------------------------------>
+<details>
+  <summary> <b>  A Scenarios where a company don't have a real data management </b> </summary>
+
+**Scenario - 1** <br/>
+Let's consider a scenarios where a company don't have a real data management.
+
+It will have a lot of issues :
+- [ ] **Waste of resources and time** (Collecting data from different sources and transforming it)
+- [ ] Multiple reports from multiple data analysts with multiple data sources creates chaos hard to make decisions based on these data
+- [ ] **Manual Process** is slow and stressful
+- [ ] More Employees, **More Human Error** chances in reporting leads to bad decisions
+- [ ] **Can't handle big data**
+- [ ] **No Integrated Report** bcuz from multiple sources will be chaotic, time consuming and full of risks.
+
+See this picture if a company is working without a proper data management like Data Warehouse, Data Lake, Data Lakehouses.
+That's why in order to make real and smart decisions, companies need a data management.
+
+<img width="500" height="500" alt="image" src="https://github.com/user-attachments/assets/01037cd2-581b-4e42-b4e8-beaad4dbec82" />
+
+<br/>
+
+#
+</details>
+
+
+<!------------------------------------>
+<details>
+  <summary> <b> A Scenario where a company has a data management </b> </summary>
+
+**Scenario - 2** <br/>
+Let's see a scenario where a company has a data management.
+
+Here Data Team will not collecting data manually, rather they use ETL components. 
+
+**ETL = Extract Transform and Load** : It is process in order to extract the data from different data sources and then apply multiple transformations on those sources and at the end loads the data to data warehouse. This will be single point of truth for analysis and reporting.
+
+All your reports is going to be consuming the data from the data warehouse which is a single point of truth. 
+
+With that we can create multiple reports as well as create integrated reports from multiple sources.
+
+<img width="500" height="500" alt="image" src="https://github.com/user-attachments/assets/e278de62-230c-4fd6-ada1-8b2af4e6e7ab" />
+
+<br/>
+
+- [x] Create Integrated Reports from multiple sources
+- [x] Whole process is automated and organized
+- [x] Reduces Human Errors 
+- [x] Fast and Efficient
+- [x] Integrated data and Historical data access
+- [x] Handle Big Data 
+
+#
+</details>
+
+
+## ETL
+<!------------------------------------>
+<details>
+  <summary> <b> What is ETL ? </b> </summary>
+
+<br/>
+
+| `Data Sources` | `Historical Data` or `Increamenal Data` |
+|----------------|-----------------------------------------|
+| `Extract`      | Indentify the data and Pull it out from source to `Target`          |
+| `Transform`    | `Data Cleansing`, `Data Preparation` and `Business Rules and Logic` |
+| `Load`         | final `data products` for Analytics and AI/ML Use cases  |
+
+ETL in nutshell, First Extract the raw data, then transform it into something meaningful and finally load it to a target where it is going to make a difference for Data Analytic (Standard Business Analytics + Advanced Analytics) like Business Intelligence and AI/ML use cases.
+
+<img width="500" height="350" alt="image" src="https://github.com/user-attachments/assets/7d3da39d-846b-4cac-8d3e-20c4fd26d76d" />
+
+<br/>
+
+In real projects we don't have only source and target. So, Data Architecture can decides to have multiple layers depends on design whether building a Data Warehouse or a Data Lake or a Data Lakehouse or a Data Mesh.
+
+Usually there are different ways on how to load the data between all those layers.
+
+In order to load data from one layer to another layer there are multiple ways on How to use the ETL Process.
+
+<img width="800" height="350" alt="image" src="https://github.com/user-attachments/assets/ec4c61ed-bf3d-4c9c-8fcc-422995acc282" />
+
+#
+</details>
+
+<!------------------------------------>
+<details>
+  <summary> Step 0.<b> Data Sources </b> </summary>
+
+### Data Sources
+
+Companies data exists in **Source Systems** what we want to do is to get the data from the sources and move it to the **Target**.
+
+Here, Source and Targets could be Database tables.
+
+First step is to specify which data we have to load from the sources.
+
+Of course, if we can load everything at a time which is known as **Loading Historical Data**.
+
+Another is to load the data incremently this is knowns as **Loading Incremental Data**.
+
+<details>
+  <img width="800" height="350" alt="image" src="https://github.com/user-attachments/assets/b572edaa-39fa-40d5-a221-ba74d182af17" />
+</details>
+
+#
+</details>
+
+<!------------------------------------>
+<details>
+  <summary> Step 1.<b> Extract </b> </summary>
+
+### Extract
+
+In Incremental Load, we specify the subset of data from source in order to prepare and load it to the target. 
+
+This step in ETL we call it **Extract**. 
+
+Here we're just indentifying the data we need. 
+
+We pull it out and don't change anything, It is going to be as it is one to one copy like source system.
+
+> Extract has only one task to identify the data that we have to pull out from the source and to not change anything.
+
+<details>
+  <img width="800" height="350" alt="image" src="https://github.com/user-attachments/assets/acf63230-0b18-429e-b326-e6044d33e669" />
+</details>
+
+#
+</details>
+<!------------------------------------>
+<details>
+  <summary> Step 2.<b> Transform </b> </summary>
+
+### Transform
+
+We will take the Extracted data and do some manipulations which is what we called **Transformations**. 
+
+This process is really heavy weight lifting. <br/>
+Here, We're going to do **Data Cleansing**, **Data Enhancement**, **Data Preparation**, **Data Integration**, **Data Normalization** in order to change the shape of data.
+
+- Formating
+- Renaming tables and columns
+- Handling Nulls, Replacing it
+- Handling Data types of each columns in each tables
+- Standardization of data
+- Data Normalization (Structuring the tables)
+
+> In Tranformation, we take the original data and reshape it, transform it into the exact format that we need for Analysis and Reporting.
+
+<details>
+  <img width="800" height="350" alt="image" src="https://github.com/user-attachments/assets/49c88473-d21b-4b87-ba92-a30e24bc109c" />
+</details>
+
+#
+</details>
+<!------------------------------------>
+<details>
+  <summary> Step 3.<b> Load </b> </summary>
+
+### Load
+
+This is the last step in ETL, where we load.
+
+In this step, we take the transformed new data and insert into the target.
+
+It is very simple we take the prepared data from transformation and move it, load it into its final destination, the target for example a data warehouse.
+
+<details>
+  <img width="800" height="350" alt="image" src="https://github.com/user-attachments/assets/5498a1c7-96cf-47c3-98c8-a47bf0f029a5" />
+</details>
+
+#
+</details>
+
+
+## Data Modeling
+<!------------------------------------>
+<details>
+  <summary> <b> What is Data Modeling ? </b> </summary>
+
+Usually Data Source system delivers raw data which is un-oraganized, messy and not very useful in its current states.
+
+Data Modeling is the process of taking raw data and then organize it, structure it in meaningful way.
+
+So What we do in Data Modeling is putting the data in a new friendly and easy to understand objects (tables) like customers, orders, products etc and each of them is focused on specific information. 
+
+What is very important in data modeling is we're going to describe the relationship between those objects (tables) by connecting them using lines what we call it as **Logical Data Model**
+
+Data Model makes it really **easy to understand our data, relationship between them and processes behind them**.
+
+
+<img width="500" height="350" alt="image" src="https://github.com/user-attachments/assets/402e53cf-508b-47d8-af81-bc1cff2ea5c8" />
+
+
+#
+</details>
+
+<!------------------------------------>
+<details>
+  <summary> <b> Conceptual Data Model, Logical Data Model, Physical Data Model  </b> </summary>
+
+3 stages/ways to draw a Data Model
+
+### Stage #1 Conceptual Data Model
+
+Here the focus is only on the entity(tables).
+
+Like Customer, Orders, Products etc
+
+We don't go in details at all, like we don't specify any columns(attributes) inside those entity(table). We just want to focus on what are the different entities(tables) that we have as well as their relationship between them.
+
+> Conceptual Data Model don't go in details, It just gives the big picture.
+
+<img width="150" height="250" alt="image" src="https://github.com/user-attachments/assets/7e8902db-76d0-4a85-a57b-62820c95f2f7" />
+
+
+### Stage #2 Logical Data Model
+
+In the second stage, we build the Logical data model.
+
+Here, we start **specifying the what are the different columns(attributes) that we can find in each table(entity/object)**.
+
+Like in customers : customer_id, first_name, last_name, gender etc
+
+Here we still the relationship between those entities(tables).
+
+Here we also make is clear which column will be **primary keys** and so on.
+
+Here, we have more details but we don't describe a lot of details for each column and **not worry how exactly we can store those tables in the database**.
+
+<img width="150" height="250" alt="image" src="https://github.com/user-attachments/assets/672a6ee0-f723-4b7b-b5c7-da1060b15165" />
+
+
+### Stage #3 Physical Data Model
+
+Third and last stage of Data Modeling is we build the Physical Data Model.
+
+This is where **everything gets ready before creating it in the database**.
+
+Here, We will have **to add all the technical details** like 
+- Adding for each column(attributes) data types
+- Length of each each data type
+- many others database techniques and details
+
+<img width="150" height="250" alt="image" src="https://github.com/user-attachments/assets/13288b07-e1c9-46d7-bb7e-882263d6e3c6" />
+
+### Summary
+
+**Conceptual Data Model** gives us **Big Picture**.
+
+**Logical Data Model** dive into details of what data we need i.e. **Blue Print**.
+
+**Physical Data Model** prepares everything for the **Implementation in the database**.
+
+In projects, We only draw Conceptual and Logical data models bcuz drawing/building a Physical Data Model needs a lot of efforts and time.
+There are many tools like Databricks, they automatically generates those Physical Models for you.
+
+<img width="500" height="350" alt="image" src="https://github.com/user-attachments/assets/d3bc198e-f0bc-4038-9fc9-62d5b5c74b0d" />
+
+#
+</details>
+
+<!------------------------------------>
+<details>
+  <summary> Theory : <b> Star Schema vs Snowflake Schema</b> </summary>
+
+For Analytics and especially for Data Warehousing and Business Intelligence, We need a special Data Model which is **optimized for Reporting and Analytics**. It should be **Flexible**, **Scalable** and **easy to understand**.
+
+For that we have 2 special Data Model :
+
+**1. Star Schema**
+
+It has a central fact table in the middle and surrounded by dimesions tables.
+
+A fact table contains transactions, events and Dimesions tables contains descriptive information.
+
+The relationship between fact table in the middle and dimensions tables around it forms like a **Star Shape**. That's why we call it Star Schema.
+
+<img width="250" height="250" alt="image" src="https://github.com/user-attachments/assets/ea1cb156-919f-46c2-80dd-20c6d863ab4e" />
+
+<br/>
+
+<br/>
+
+**2. Snowflake Schema**
+
+It is very similar to Star Schema. Here also we have a fact table in the middle which is surrounded by dimesion tables.
+
+But big difference is that we **break the dimensions into smaller sub-dimension tables**.
+
+As we're extending the dimesion tables, the shape of this data model looks like **Snowflake**.
+
+<img width="250" height="250" alt="image" src="https://github.com/user-attachments/assets/163c7792-6300-4475-93e2-e1c32303030b" />
+
+
+### Compare Star Schema and Snowflake Data Model
+
+Start Schema looks easier, So It is usually easy to understand, easy to query. It is perfect for Analysis.
+
+But Star Schema has one issue, Dimension might contain duplicates and your dimensions get bigger with time.
+
+Snowflake Schema is more complex, you need a lot of efforts to understand schema and qyery something.
+
+But main advantage here in Snowflake Schema is It comes with Normalizations as we're breaking those redundancies into small tables. You optimize the storage.
+
+But these days who care about storage.
+
+> **Star Schema** is very commonly used across the project, It's perfect for Reporting using PowerBI.
+
+
+<img width="500" height="350" alt="image" src="https://github.com/user-attachments/assets/f1b3c6e5-225a-446a-8671-2a49414c2399" />
+
+#
+</details>
+
+<!------------------------------------>
+<details>
+  <summary> <b> Dimensions vs Facts </b> </summary>
+
+DIMENSION   
+
+It contains Descriptive information(categories) that give context to the data.
+
+Product_Info (product_id, product_name, category, etc )
+
+**Who? What? Where?**
+
+FACT
+
+It contains Qualitative informations. They are events like transactions. 
+
+It contains 3 important information :
+1. Multiple Ids from multiple dimensions
+2. Data Information
+3. Measures and Numbers
+
+If you see all these type of data in tables, there are fact tables.
+
+**How much? How many?**
+
+#
+</details>
+
+## Dimensions and Measures
+<!------------------------------------>
+<details>
+  <summary> The Secret <b> Dimensions and Measures </b> </summary>
+
+A trick to analyze any datasets is to look at them by dividing into **Measure** and **Dimension**
+
+You can generates endless amount of insights from any project from any datasets.
+
+How to do this?
+
+When we look at any datasets, we see tables with multiple columns and rows.
+
+Here, We have to see data always in 2 categories either  a **Dimension** or a **Measure**.
+
+<img width="500" height="350" alt="image" src="https://github.com/user-attachments/assets/fed403bc-5dc6-44f8-9c03-3b51f7368bd1" />
+
+
+Question is My column is a dimension or a measure ?
+
+In order to assign it into either of these 2 categories, 
+you have to ask the 1st Questions :
+
+Is Data Type = Number ?
+- If it is **NO** like it is string, date or any other data type that means It's a dimension.
+- If It is **YES** then ask 2nd Question
+
+Does it make sense to Agggregate it?
+- If answer is **YES** then It is a Measure
+- Else It is a Dimension
+
+<img width="500" height="350" alt="image" src="https://github.com/user-attachments/assets/17e7bf14-aba6-430f-b350-210803e0b369" />
+
+
+<br/>
+
+Example :
+
+<img width="500" height="350" alt="image" src="https://github.com/user-attachments/assets/341bb1c5-e201-4ab2-9077-071ebe047e4c" />
+
+
+#
+</details>
+
+<!------------------------------------>
+<details>
+  <summary> <b> Why do we need Dimensions and Measures ? </b> </summary>
+
+- We need dimensions to group up our data by something.
+
+- How much?, How many? Here we always need to aggregate/calculate the data for that we need measure.
+
+<img width="500" height="350" alt="image" src="https://github.com/user-attachments/assets/49e13491-a5da-44e8-89c8-1740f62a557f" />
+
+
+#
+</details>
+
+
+## Separation of Concern(SoC)
+<!------------------------------------>
+<details>
+  <summary> <b> What is Separation of concerns ?</b> </summary>
+
+This is the secret that each Data Architect must know.
+
+As we're designing the architecture, we have to make sure to break down the complex system into smaller, independent part.
+
+Each part is responsible for a specific task. 
+
+Here comes a magic, the component of your architecture must not be duplicated. We can't have 2 parts doing the same thing.
+
+The idea here is **to not mix everything**. 
+
+This is one of the biggest mistake in you see in every project.
+
+<img width="500" height="350" alt="image" src="https://github.com/user-attachments/assets/2b61f51c-0e7d-4f25-9790-dd4cc9bf8124" />
+
+So, A good architecture, follow this concept/principle.
+
+Real World Example in a data project :
+
+We have defined a unique set of task in each layer(bronze, Silver, Gold).
+
+Each layer has its own unique set of tasks, we do not allow to do task of Bronze layer in Silver layer vice-versa.
+Bcuz we have decided and made a standard rules for that.
+
+> **As a Data Architect you must have to this mindset of Seperation of Concern to be in Top 1%**.
+
+
+<img width="500" height="350" alt="image" src="https://github.com/user-attachments/assets/0e2da6da-0321-4245-9988-120a92a87497" />
+
+
+### Standard Operating Procedure (SoP)
+
+We also have some defined SOPs in order to make everything Standard.
+
+
+#
+</details>
+
+
+
+## Data Catalog
+
+<!------------------------------------>
+<details>
+  <summary> <b> What is Data Catalog ? </b> </summary>
+
+<br/>
+
+We have a Data Model, and we build something called a Data Product.
+
+We will be sharing the data products with different types of users (Data Analyst, Data Scientist, Business users etc).
+
+There is something that every data product must need that is **Data Catalog**.
+
+Data Catalog is a document that describe everything about your Data Model (the schema, the tables, the columns, relationship between tables).
+
+With that we make our data product very crystle clear for everyone who wants to use it, derive more insights from our data projects easily.
+Data Catalogs saves time otherwise each users keep asking about the same data product everytime.
+
+- What is this table?
+- What does mean by this columns?
+- How to connect Table A with Table B?
+
+You have to keep repeating yourself and explaining the same stuffs over and over again.
+
+<img width="500" height="350" alt="image" src="https://github.com/user-attachments/assets/7bc05a40-82a7-49fe-ac47-89fda58e0b1e" />
+
+<br/>
+
+Instead, We prepare a Data Catalog, a Data Model and deliver everything together to the users to save your time and energy.
+So, It is a best investment and best practices.
+
+<img width="500" height="350" alt="image" src="https://github.com/user-attachments/assets/5651888d-33f5-45af-a262-11bccf8cc818" />
+
+
+#
+</details>
+
+## AI Engineering
+<!------------------------------------>
+<details>
+  <summary> <b> What is an AI Engineer ? </b> </summary>
+
+**AI Engineer** is someone who builds Systems that use AI to solve real business problems.
+
+- [ ] You're not building ChatGPT/Gemini/Claude or you're training a data Model.
+
+- [x] You're **building an AI System**.
+
+<img width="350" height="250" alt="image" src="https://github.com/user-attachments/assets/28cea1dc-3d92-44a1-96fd-05c330382a50" />
+
+<br/>
+
+What is inside an AI System?
+
+Inside AI System, you will find the following components :
+
+- You will be connecting AI Models like `OpenAI Models` from **Hugging face**
+
+- You will be connecting company data, databases, files, documents.
+
+- You will be connecting Company's tools and Apps like Email, Internal Services tools and other stuffs.
+
+- You will be connecting the Interfaces where the users are going to interact with the AI System.
+
+> **Basically You're just connecting stuffs in one place, Your main job is to make everything correct, secure, fas, scalable and cost efficient**
+
+<img width="350" height="250" alt="image" src="https://github.com/user-attachments/assets/f7f3217c-5ef2-49a3-bfa8-d90b5ecc3314" />
+
+#
+</details>
+
+
+## Prompt Engineering
+
+<!------------------------------------>
+<details>
+  <summary> <b> What is Prompt Engineering ?</b> </summary>
+
+<br/>
+
+Most people think **Prompt Engineering** is just like you're typing something to ask LLM Models like ChatGPT or Google Gemini or DeepSeek and hoping for best answers.
+
+But It's not that simple. There is a skill behind it.
+
+It's all about how you communicate with a Model so that It understand exactly what you want and how to get a tailored answers exactly How you expect?
+
+Meaning, We have to give a detailed clear instructions and Context.
+
+We have to tell the Model Who it is? and What its role and Show examples of results that you want.
+
+Each time you get an answer from AI, You can review it and improve your prompts step by step.
+
+
+<img width="500" height="350" alt="image" src="https://github.com/user-attachments/assets/c40f4cca-47fb-498d-b0fe-55135d6dff15" />
 
 
 #
@@ -1541,8 +2264,190 @@ First step of building a data architecture is to make a very important decision 
 
 <!------------------------------------>
 <details>
-  <summary> <b> </b> </summary>
+  <summary> <b> What is OpenAI API ?</b> </summary>
+
+<br/>
+
+**API** is let us interact with the same Model but with one big difference inside your own app, inside your own website, inside your products.
+
+With that you're building like a ChatBot Assistance inside your tools.
+
+It is very simple to do. It is just few lines of Python. You send a prompt, you get a response and you will display it wherever you want.
+
+<img width="350" height="250" alt="image" src="https://github.com/user-attachments/assets/d0e9a0b8-1bec-44c1-a500-ecea4f52fc97" />
 
 
 #
 </details>
+
+
+<!------------------------------------>
+<details>
+  <summary> <b> What is Hugging Face ?</b> </summary>
+
+<br/>
+
+As we build our AI System, We can notice that we can't rely completely on OpenAI bcuz actually they're closed source. That means we have no control over the Model, We can't see how exactly it works.
+
+We have to pay a lot for using Tokens every time. And if you're not using Cloud services like Azure/AWS/GCP your company data will leave your environment and this is huge problem for many businesses.
+
+<img width="500" height="350" alt="image" src="https://github.com/user-attachments/assets/a463f2d7-abac-4aa9-bb83-60682e53fdd4" />
+
+<br/>
+
+This is where the **Hugging Face** comes into the picture.
+
+Click Here [**Hugging Face**](https://huggingface.co/)
+
+It is the biggest community library for AI Models. There are already more than 2 millions model over there. and best thing is most of them are free. You can go and find model for almost any problem that you might encountered.
+
+As a Data Science Industry, As of now we don't have model trained on anything from Scratch..
+
+All what we have to do is just find the right Model for your business use case and fine-tune it.
+
+The big advantage with Hugging Face is that we can download the models locally at your machine and you can deploy it anywhere you want.
+With that you stay in your control and you can use sensitive data for the model bcuz nothing is leaving your envirnment as well you reduce the cost.
+
+
+<img width="500" height="3500" alt="image" src="https://github.com/user-attachments/assets/af72396f-3bdb-4030-9f80-4f5fe111e7f2" />
+
+
+#
+</details>
+
+
+<!------------------------------------>
+<details>
+  <summary> <b> What is Langchain ? </b> </summary>
+
+<br/>
+
+Now we can talk to AI Model, we can write good prompts, we can build cool demos, but this is not enough to build AI System bcuz you need to connect everything together. This is where **LangChain** comes in.
+
+We can use **LangChain** in order to orchestrate the whole process to connect all the models that we need (the tools, the memory) as well as our business logic.
+
+AI can take multiple steps in order to complete a full task. This is exactly what AI System does.
+It is not just like One Prompt and one Answers.
+
+Click Here [**LongChain**](https://www.langchain.com/)
+
+<img width="800" height="500" alt="image" src="https://github.com/user-attachments/assets/80811b76-b4ff-44f5-9616-87cf1eff3900" />
+
+
+
+#
+</details>
+
+
+<!------------------------------------>
+<details>
+  <summary> <b> What is RAG ? </b> </summary>
+
+### RAG = Retrival Augmented Generation
+
+<img width="500" height="350" alt="image" src="https://github.com/user-attachments/assets/0fdbc6e1-f3d5-4748-a65c-e41a52f057cc" />
+
+<br/>
+
+The issue is that all the AI Models are actually pre-trained using public data.
+
+But of course, the companies data are protected not available publicly which means AI Models have no idea about the companies data.
+
+<img width="500" height="350" alt="image" src="https://github.com/user-attachments/assets/a923c0ea-c118-42fa-b37b-fa96e2e3e105" />
+
+
+<br/>
+
+So, we have somehow to connect company's data to the AI Model, Here comes the concept of **RAG(Retrieve Augment and Generation**
+
+**How it works ?**
+
+First we take all the companies data, files and PDFs and you want to store them into something called Vector Database.
+
+All what we have to do is turn a text into something fancy **Embedding**(It is just representing the token(word which is text) with numbers and then load and store all those embedding inside the vector database.
+
+Once User ask a question, It is going to turn into embedding and System is going to start comparing and searching for the closest match using Semantic Search.
+
+Once it finds the right information, the LLM Model is going to turn it into response.
+
+So, It's all about adding memory to the LLM Model to use your real data instead of relying on what models were pre-trained on.
+
+<img width="350" height="250" alt="image" src="https://github.com/user-attachments/assets/88a14d89-d352-4304-b295-60bd6b80cd83" />
+
+
+#
+</details>
+
+<!------------------------------------>
+<details>
+  <summary> <b> What is AI Agents ?</b> </summary>
+
+<br/>
+
+We all use AI ChatBots like ChatGPT, we write prompts and it gives us text in reponse.
+
+But this is not enough, Companies want more than a nice answers on the screen. They want an AI that actually gets the works done.
+
+This is exactly why we have **AI Agents**.
+
+The AI Agent does first thinking and then it is going to take a real actions.
+
+e.g. : Talking to database, updating records, calling an API, triggering a workflow.
+
+It is also great in order to automate a lot of boring task that we normally do at work like reading the incoming emails, responding to it, createing a summary a meeting, creating those boring Jira and Service Now Tickets.
+
+<img width="350" height="250" alt="image" src="https://github.com/user-attachments/assets/b3c81016-6fb0-4172-b396-91b5f1236505" />
+
+
+<br/>
+
+It is way more that just a chat with AI.
+#
+</details>
+
+<!------------------------------------>
+<details>
+  <summary> <b> What  is MCP ?</b> </summary>
+
+### MCP = Model Context Protocol
+
+AI Agents can only take real actions like checking emails, querying database, calling an API only if they are connected to the external sources.
+
+<img width="500" height="350" alt="image" src="https://github.com/user-attachments/assets/6b52c4fb-5da0-4c88-bbc4-be705b9b26c0" />
+
+<br/>
+
+Here, There are 2 big problems :
+1. If we connect our AI Agents to the production database, this is risky.
+2. We have a lot of external systems and we will be ended up building Connectors  for each tool which takes a lot of times and efforts in order to create a new connectors each time, we are connecting a new system to the AI Agents
+
+<img width="500" height="350" alt="image" src="https://github.com/user-attachments/assets/f2e7e6dc-a2bf-47a2-96f0-0e06412d231e" />
+
+<br/>
+
+
+<img width="500" height="350" alt="image" src="https://github.com/user-attachments/assets/8f3892c0-d982-4dc9-bac9-086afea53a31" />
+
+<br/>
+
+This is exactly why we have **MCP**.
+
+MCP fixes those issues.
+
+We are going to Add a safe and standard layer between our AI Agents and Our Sources.
+
+This has a a lot of benefits :
+- [x] We can plug and play any system to our AI Agents wuthout creating each time a new connectors.
+- [x] Using this layer gives us full control on how the AI os going to interact with our sources where we can add a lot of policies in order to protect our external sources.
+
+Using MCP Servers and Protocol, It is going to make everything like faster. We can connect a lot of things as well as feel safe connecting AI Agents to our sources.
+
+<br/>
+
+<img width="500" height="350" alt="image" src="https://github.com/user-attachments/assets/9dfd51cf-3a08-44d4-9e1a-3461cf5afdd9" />
+
+
+#
+</details>
+
+<!------------------------------------>
